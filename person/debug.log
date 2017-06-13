@@ -1,0 +1,9 @@
+[0424/151102.476:ERROR:scoped_process_suspend.cc(30)] NtSuspendProcess: 已尝试访问正在退出的过程。  (0xc000010a)
+[0424/151102.499:ERROR:process_info.cc(103)] ReadProcessMemory bool __cdecl crashpad::`anonymous-namespace'::ReadStruct<struct crashpad::process_types::PEB<struct crashpad::process_types::internal::Traits32>>(void *,unsigned __int64,struct crashpad::process_types::PEB<struct crashpad::process_types::internal::Traits32> *): 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0424/151102.500:ERROR:process_info.cc(542)] ReadProcessData failed
+[0424/151102.501:ERROR:process_reader_win.cc(233)] ReadMemory at 0x6a757598 of 12 bytes failed: 仅完成部分的 ReadProcessMemory 或 WriteProcessMemory 请求。 (0x12B)
+[0424/151102.502:WARNING:process_snapshot_win.cc(68)] ReadMemory ExceptionInformation failed
+[0424/151102.502:WARNING:crash_report_exception_handler.cc(60)] ProcessSnapshotWin::Initialize failed
+[0424/155302.530:ERROR:process_reader_win.cc(142)] SuspendThread: 拒绝访问。 (0x5)
+[0424/155302.531:ERROR:exception_snapshot_win.cc(87)] thread ID 11276 not found in process
+[0424/155302.531:WARNING:crash_report_exception_handler.cc(60)] ProcessSnapshotWin::Initialize failed

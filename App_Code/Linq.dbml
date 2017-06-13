@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="aspnet-Orange-20170331015318" Class="LinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=www.ww1835.top;Initial Catalog=aspnet-Orange-20170331015318;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="aspnet_Orange_20170331015318ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Commodities" Member="Commodities">
+    <Type Name="Commodities">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="img" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ID_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="img_small" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="jieshao" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Price_old" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Time" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Commodity_2_Commodities" Member="Commodity_2" ThisKey="ID_ID" OtherKey="ID" Type="Commodity_2" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Commodity_1" Member="Commodity_1">
+    <Type Name="Commodity_1">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Slogan" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ID_1_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Time" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Commodity_1_Commodity_2" Member="Commodity_2" ThisKey="ID" OtherKey="ID_1_ID" Type="Commodity_2" />
+      <Association Name="Commodity_1_Commodity_21" Member="Commodity_21" ThisKey="ID" OtherKey="ID_1_ID" Type="Commodity_2" />
+      <Association Name="Commodity_1_Commodity_22" Member="Commodity_22" ThisKey="ID" OtherKey="ID_1_ID" Type="Commodity_2" />
+      <Association Name="Commodity_1_Commodity_23" Member="Commodity_23" ThisKey="ID" OtherKey="ID_1_ID" Type="Commodity_2" />
+      <Association Name="Commodity_type_Commodity_1" Member="Commodity_type" ThisKey="ID_1_ID" OtherKey="ID" Type="Commodity_type" IsForeignKey="true" />
+      <Association Name="Commodity_type_Commodity_11" Member="Commodity_type1" ThisKey="ID_1_ID" OtherKey="ID" Type="Commodity_type" IsForeignKey="true" />
+      <Association Name="Commodity_type_Commodity_12" Member="Commodity_type2" ThisKey="ID_1_ID" OtherKey="ID" Type="Commodity_type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Commodity_2" Member="Commodity_2">
+    <Type Name="Commodity_2">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ID_1_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Time" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Commodity_2_Commodities" Member="Commodities" ThisKey="ID" OtherKey="ID_ID" Type="Commodities" />
+      <Association Name="Commodity_1_Commodity_2" Member="Commodity_1" ThisKey="ID_1_ID" OtherKey="ID" Type="Commodity_1" IsForeignKey="true" />
+      <Association Name="Commodity_1_Commodity_21" Member="Commodity_11" ThisKey="ID_1_ID" OtherKey="ID" Type="Commodity_1" IsForeignKey="true" />
+      <Association Name="Commodity_1_Commodity_22" Member="Commodity_12" ThisKey="ID_1_ID" OtherKey="ID" Type="Commodity_1" IsForeignKey="true" />
+      <Association Name="Commodity_1_Commodity_23" Member="Commodity_13" ThisKey="ID_1_ID" OtherKey="ID" Type="Commodity_1" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Commodity_attribute" Member="Commodity_attribute">
+    <Type Name="Commodity_attribute">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Commodity_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Commodity_option1_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Commodity_option2_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price_old" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Time" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Commodity_attribute_Orders" Member="Orders" ThisKey="Id" OtherKey="Commodity_Id" Type="Orders" />
+      <Association Name="Commodity_option1_Commodity_attribute" Member="Commodity_option1" ThisKey="Commodity_option1_Id" OtherKey="Id" Type="Commodity_option1" IsForeignKey="true" />
+      <Association Name="Commodity_option2_Commodity_attribute" Member="Commodity_option2" ThisKey="Commodity_option2_Id" OtherKey="Id" Type="Commodity_option2" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Commodity_type" Member="Commodity_type">
+    <Type Name="Commodity_type">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Type_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="img" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Time" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Commodity_type_Commodity_1" Member="Commodity_1" ThisKey="ID" OtherKey="ID_1_ID" Type="Commodity_1" />
+      <Association Name="Commodity_type_Commodity_11" Member="Commodity_11" ThisKey="ID" OtherKey="ID_1_ID" Type="Commodity_1" />
+      <Association Name="Commodity_type_Commodity_12" Member="Commodity_12" ThisKey="ID" OtherKey="ID_1_ID" Type="Commodity_1" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Commodity_option1" Member="Commodity_option1">
+    <Type Name="Commodity_option1">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[option]" Member="option" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Commodity_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="type_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Time" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Commodity_option1_Commodity_attribute" Member="Commodity_attribute" ThisKey="Id" OtherKey="Commodity_option1_Id" Type="Commodity_attribute" />
+      <Association Name="Commodity_option1_Shopcarts" Member="Shopcarts" ThisKey="Id" OtherKey="Commodity_option1_Id" Type="Shopcarts" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Commodity_option2" Member="Commodity_option2">
+    <Type Name="Commodity_option2">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[option]" Member="option" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Commodity_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="type_name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Time" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Commodity_option2_Commodity_attribute" Member="Commodity_attribute" ThisKey="Id" OtherKey="Commodity_option2_Id" Type="Commodity_attribute" />
+      <Association Name="Commodity_option2_Shopcarts" Member="Shopcarts" ThisKey="Id" OtherKey="Commodity_option2_Id" Type="Shopcarts" />
+    </Type>
+  </Table>
+  <Table Name="dbo.IMGs" Member="IMGs">
+    <Type Name="IMGs">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="img" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="type" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="describe1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="describe2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Commodity_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Shopcarts" Member="Shopcarts">
+    <Type Name="Shopcarts">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Commodity_option1_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Commodity_option2_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Commodity_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Old_Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Commodity_option1_Shopcarts" Member="Commodity_option1" ThisKey="Commodity_option1_Id" OtherKey="Id" Type="Commodity_option1" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Commodity_option2_Shopcarts" Member="Commodity_option2" ThisKey="Commodity_option2_Id" OtherKey="Id" Type="Commodity_option2" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Orders" Member="Orders">
+    <Type Name="Orders">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Commodity_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BuyNum" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="sendAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ManName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Manphone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Post" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Time" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Commodity_attribute_Orders" Member="Commodity_attribute" ThisKey="Commodity_Id" OtherKey="Id" Type="Commodity_attribute" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Users_Orders" Member="Users" ThisKey="user_id" OtherKey="ID" Type="Users" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Resses" Member="Resses">
+    <Type Name="Resses">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Province" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Township" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="xiangxi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="User_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="telephone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="moren" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Users_Resses" Member="Users" ThisKey="User_ID" OtherKey="ID" Type="Users" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="Users">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="User_IN_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Users_Orders" Member="Orders" ThisKey="ID" OtherKey="user_id" Type="Orders" />
+      <Association Name="Users_Resses" Member="Resses" ThisKey="ID" OtherKey="User_ID" Type="Resses" />
+      <Association Name="User_IN_Users" Member="User_IN" ThisKey="User_IN_ID" OtherKey="ID" Type="User_IN" IsForeignKey="true" />
+      <Association Name="User_IN_Users1" Member="User_IN1" ThisKey="User_IN_ID" OtherKey="ID" Type="User_IN" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_IN" Member="User_IN">
+    <Type Name="User_IN">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="nikename" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="telephone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="sex" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="birthday" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="User_IN_Users" Member="Users" ThisKey="ID" OtherKey="User_IN_ID" Type="Users" />
+      <Association Name="User_IN_Users1" Member="Users1" ThisKey="ID" OtherKey="User_IN_ID" Type="Users" />
+    </Type>
+  </Table>
+</Database>
