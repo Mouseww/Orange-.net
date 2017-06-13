@@ -1,4 +1,5 @@
-﻿using Orange商城;
+﻿using Orange.ViewModel;
+using Orange商城;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,7 @@ public partial class home_Login : System.Web.UI.Page
             var reader = new biz().Login(user1);
             if (reader != null)
             {
+                Session["User"] =(VMUser)reader[0];
                 Response.Redirect("index.aspx");
             }
             else

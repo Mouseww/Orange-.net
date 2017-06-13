@@ -16,8 +16,8 @@ public partial class home_index : System.Web.UI.Page
     public List<IMGs> tianpinfirst = new List<IMGs>();
     public List<VMCommodity> tianpin = new List<VMCommodity>();
     public List<Commodity_type> Commodity_type = new List<Commodity_type>();
-    public List<Commodity_1> Commodity_1 = new List<Commodity_1>();
-    public List<Commodities> Commodity = new List<Commodities>();
+    public List<List<Commodity_1>> Commodity_1 = new List<List<Commodity_1>>();
+    public List<List<List<Commodity_2>>> Commodity = new List<List<List<Commodity_2>>>();
     protected void Page_Load(object sender, EventArgs e)
     {
         Carousel = new biz().GETIMG("Carousel");///轮播图片
@@ -32,10 +32,10 @@ public partial class home_index : System.Web.UI.Page
         Commodity_type = new biz().GetCommodity_type();//取A级目录
         
 
-       //Commodity_1 = Details(Commodity_type);//取B级目录
+       Commodity_1 = Details(Commodity_type);//取B级目录
         
 
-       //Commodity = Details1(Commodity_1);//c
+       Commodity = Details1(Commodity_1);//c
        
 
         var Comm1 = new biz().GetCommodityTD(6);//取第一模块top标题
@@ -97,20 +97,20 @@ public partial class home_index : System.Web.UI.Page
     /// <param name="Commodity_1"></param>
     /// <param name="Commod"></param>
     /// <returns></returns>
-    //public List<Commodity> Details2(Commodity_1 Commodity_1, List<Commodity_2> Commod)
-    //{
-    //    var Comm1 = new List<Commodity>();
+    public List<Commodities> Details2(Commodity_1 Commodity_1, List<Commodity_2> Commod)
+    {
+        var Comm1 = new List<Commodities>();
 
-    //    foreach (var com in Commod)
-    //    {
-    //        var Comm = new biz().GetCommodityTT1(com.ID);
-    //        if (Comm.Count != 0)
-    //        {
-    //            Comm1.Add(Comm[0]);
-    //        }
-    //    }
-    //    return Comm1;
-    //}
+        foreach (var com in Commod)
+        {
+            var Comm = new biz().GetCommodityTT1(com.ID);
+            if (Comm.Count != 0)
+            {
+                Comm1.Add(Comm[0]);
+            }
+        }
+        return Comm1;
+    }
 
     public Commodity_1 Details3()
     {

@@ -9,13 +9,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
 
 		<title>框架</title>
-
-        <link href="../css/personal.css" rel="stylesheet" />
+        <link href="../css/systyle.css" rel="stylesheet" type="text/css">
+<%--    <link href="../css/personal.css" rel="stylesheet" />
         <link href="../AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" />
-        <link href="../AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" />
+        <link href="../AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" />--%>
         <script src="../AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
         <script src="../AmazeUI-2.4.2/assets/js/amazeui.js"></script>
-        	<link href="../css/systyle.css" rel="stylesheet" type="text/css">
+        
 
 		
 	</head>
