@@ -61,14 +61,14 @@
 						<div class="flexslider">
 							<ul class="slides">
 								<li>
-									<img src="../images/01.jpg" title="pic" />
-								</li>
-								<li>
-									<img src="../images/02.jpg" />
-								</li>
-								<li>
-									<img src="../images/03.jpg" />
-								</li>
+                            <img src="<%=Introduction.img%>" title="pic" />
+                        </li>
+                        <li>
+                            <img src="<%=Introduction.img%>" />
+                        </li>
+                        <li>
+                            <img src="<%=Introduction.img%>" />
+                        </li>
 							</ul>
 						</div>
 					</section>
@@ -92,25 +92,16 @@
 							</script>
 
 							<div class="tb-booth tb-pic tb-s310">
-								<a href="../images/01.jpg"><img src="../images/01_mid.jpg" alt="细节展示放大镜特效" rel="../images/01.jpg" class="jqzoom" /></a>
-							</div>
-							<ul class="tb-thumb" id="thumblist">
-								<li class="tb-selected">
-									<div class="tb-pic tb-s40">
-										<a href="#"><img src="../images/01_small.jpg" mid="../images/01_mid.jpg" big="../images/01.jpg"></a>
-									</div>
-								</li>
-								<li>
-									<div class="tb-pic tb-s40">
-										<a href="#"><img src="../images/02_small.jpg" mid="../images/02_mid.jpg" big="../images/02.jpg"></a>
-									</div>
-								</li>
-								<li>
-									<div class="tb-pic tb-s40">
-										<a href="#"><img src="../images/03_small.jpg" mid="../images/03_mid.jpg" big="../images/03.jpg"></a>
-									</div>
-								</li>
-							</ul>
+                        <a href="<%=Introduction.img%>"><img src="<%=Introduction.img%>" alt="细节展示放大镜特效" rel="<%=Introduction.img%>" class="jqzoom" /></a>
+                    </div>
+                    <ul class="tb-thumb" id="thumblist">
+                        <li class="tb-selected">
+                            <div class="tb-pic tb-s40">
+                                <a href="#"><img src="<%=Introduction.img%>" mid="<%=Introduction.img%>" big="<%=Introduction.img%>"></a>
+                            </div>
+                        </li>
+
+                    </ul>
 						</div>
 
 						<div class="clear"></div>
@@ -122,7 +113,7 @@
 						<!--名称-->
 						<div class="tb-detail-hd">
 							<h1>	
-				 良品铺子 手剥松子218g 坚果炒货 巴西松子
+				 <%=Introduction.Name %>
 	          </h1>
 						</div>
 						<div class="tb-detail-list">
@@ -150,11 +141,11 @@
 							</div>
 								<li class="price iteminfo_price">
 									<dt>促销价</dt>
-									<dd><em>¥</em><b class="sys_item_price">56.90</b>  </dd>                                 
+									<dd><em>¥</em><b class="sys_item_price"><%=Introduction.Price %></b>  </dd>                                 
 								</li>
 								<li class="price iteminfo_mktprice">
 									<dt>原价</dt>
-									<dd><em>¥</em><b class="sys_item_mktprice">98.00</b></dd>									
+									<dd><em>¥</em><b class="sys_item_mktprice"><%=Introduction.Price_old %></b></dd>									
 								</li>
 								<div class="clear"></div>
 							</div>
@@ -203,7 +194,12 @@
 								<dt class="theme-login"><div class="cart-title">可选规格<span class="am-icon-angle-right"></span></div></dt>
 								<dd>
 									<!--操作页面-->
-
+                                    <script>
+                                var attr_id1 = null;
+                                var attr_id2 = null;
+                                var click_id = null;
+                                var click_id2 = null;
+                            </script>
 									<div class="theme-popover-mask"></div>
 
 									<div class="theme-popover">
@@ -217,22 +213,62 @@
 												<div class="theme-signin-left">
 
 													<div class="theme-options">
-														<div class="cart-title">口味</div>
-														<ul>
-															<li class="sku-line selected">原味<i></i></li>
-															<li class="sku-line">奶油<i></i></li>
-															<li class="sku-line">炭烧<i></i></li>
-															<li class="sku-line">咸香<i></i></li>
-														</ul>
-													</div>
-													<div class="theme-options">
-														<div class="cart-title">包装</div>
-														<ul>
-															<li class="sku-line selected">手袋单人份<i></i></li>
-															<li class="sku-line">礼盒双人份<i></i></li>
-															<li class="sku-line">全家福礼包<i></i></li>
-														</ul>
-													</div>
+                                                <div id="cart-title1" class="cart-title"><%=attr_option1[0].type_name %></div>
+                                                <ul>
+                                                    <% foreach (var attribute in attr_option1)
+                                                        {%>
+
+
+                                                    <li id="attribute_<%=attribute.Id%>" class="sku-line"><%=attribute.option %><i></i></li>
+                                                    <script>
+
+                                                        $('#attribute_<%=attribute.Id%>').toggle(function () {
+                                                            if (click_id != null) {
+                                                                $('#attribute_' + click_id).click();
+                                                            }
+                                                            click_id = "<%=attribute.Id%>";
+                                                                attr_id1 = "<%=attribute.Id%>";
+                                                                attr_name1 = "<%=attribute.option%>";
+
+                                                            }, function () {
+                                                                attr_id1 = null;
+                                                                attr_name1 = null;
+                                                            })
+                                                       
+                                                    </script>
+
+
+
+                                                   <% }%> 
+                                                </ul>
+                                            </div>
+                                            <div class="theme-options">
+                                                <div id="cart-title2" class="cart-title"><%=attr_option2[0].type_name%></div>
+                                                <ul>
+                                                    <%foreach (var attr in attr_option2)
+                                                        { %>
+                                                    <li id="attr_<%=attr.Id%>" class="sku-line"><%=attr.option%><i></i></li>
+                                                    <script>
+
+                                                       
+                                                        $('#attr_<%=attr.Id%>').toggle(function () {
+                                                            if (click_id2 != null) {
+                                                                $('#attr_' + click_id2).click();
+                                                            }
+                                                            click_id2 = "<%=attr.Id%>";
+                                                                attr_id2 = "<%=attr.Id%>";
+                                                                attr_name2 = "<%=attr.option%>";
+                                                            },
+                                                            function () {
+                                                                attr_id2 = null;
+                                                                attr_name2 = null;
+                                                            }
+                                                            )
+                                                       
+                                                    </script>
+                                                   <%} %> 
+                                                </ul>
+                                            </div>
 													<div class="theme-options">
 														<div class="cart-title number">数量</div>
 														<dd>
@@ -272,8 +308,8 @@
 														<img src="../images/songzi.jpg" />
 													</div>
 													<div class="text-info">
-														<span class="J_Price price-now">¥39.00</span>
-														<span id="Stock" class="tb-hidden">库存<span class="stock">1000</span>件</span>
+														<span class="J_Price price-now">¥<%=Introduction.Price %></span>
+														<span id="Stock" class="tb-hidden">库存<span class="stock"><%=Introduction.Number%></span>件</span>
 													</div>
 												</div>
 
@@ -284,6 +320,32 @@
                                     
 								</dd>
 							</dl>
+                            @* 改变价格 *@
+    <script>
+        var Price = null;
+        $(".sku-line").click(
+            function () {
+                if (attr_id1 == null || attr_id2 == null) {
+                    return;
+                }
+                else {
+                  
+                    $.post("introduction.ashx", {"type":"chenge_Price","kouwei": attr_id1, "guige": attr_id2 }, function (data) {
+                        var pri = data.split(',');
+                        $(".sys_item_price").text(pri[1]);
+                        Price = pri[3];
+                        $(".stock").text(pri[0]);
+                        $('.sys_item_mktprice').text(pri[2])
+
+
+                    }
+        );
+                  
+                }
+            }
+        )
+
+    </script>
 							<div class="clear"></div>
 							
 						</div>
@@ -295,7 +357,32 @@
 					<div class="clear"></div>
 
 				</div>
+                <script>
+       
+        $('a#LikBasket11').click(function () {
+            if (attr_id1 != null && attr_id2 != null) {
+                var number = $('#text_box').val();
+                //document.location.href = "../Introduction/Index?id=@ViewBag.Introduction.Id&&Commodity_id="+Price+"&&attr=" + attr_id1 + "&&attr2=" + attr_id2 + "&&number=" + number + "&&Price=" + $('.sys_item_price').text() + "&&Old_Price=" + $('.sys_item_mktprice').text();
+                $.post("introduction.aspx", {"Introduction_id":"<%=Introduction.Id%>", "type":"add_shopcar","Commodity_id": Price, "attr": attr_id1, "attr2": attr_id2, "number": number, "Price": $('.sys_item_price').text(), "Old_Price": $('.sys_item_mktprice').text() }, function (data) {
+                    alert(data);
+                })
+            }
+            else {
+                alert("请先选择商品属性");
+            }
+        })
+        $('a#LikBuy').click(function () {
+            if (attr_id1 != null && attr_id2 != null) {
+                var number = $('#text_box').val();
+                document.location.href = "../Introduction/Order?id=@ViewBag.Introduction.Id&&Commodity_id=@ViewBag.Introduction.Id&&op_type=@ViewBag.attribute[0].type_name&&op_type2=@ViewBag.attr[0].type_name&&attr=" + attr_name1 + "&&attr2=" + attr_name2 + "&&number=" + number + "&&img=@ViewBag.Introduction.img" + "&&Commodity_name=@ViewBag.Introduction.Name&&Price=" + $('.sys_item_price').text() + "&&Old_Price=" + $('.sys_item_mktprice').text();
+            }
+            else {
+                alert("请先选择商品属性");
+            }
+        })
 
+
+    </script>
 				<!--优惠套装-->
 				<div class="match">
 					<div class="match-title">优惠套装</div>
