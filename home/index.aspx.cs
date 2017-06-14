@@ -15,9 +15,13 @@ public partial class home_index : System.Web.UI.Page
     public List<IMGs> huodong = new List<IMGs>();
     public List<IMGs> tianpinfirst = new List<IMGs>();
     public List<VMCommodity> tianpin = new List<VMCommodity>();
-    public List<Commodity_type> Commodity_type = new List<Commodity_type>();
+    public List<Commodity_type> Commodity_Type = new List<Commodity_type>();
     public List<List<Commodity_1>> Commodity_1 = new List<List<Commodity_1>>();
     public List<List<List<Commodity_2>>> Commodity = new List<List<List<Commodity_2>>>();
+    public Commodity_1 Comm1 = new Commodity_1();
+    public List<Commodity_2> Comm = new List<Commodity_2>();
+    public List<Commodity_2> Commm = new List<Commodity_2>();
+    public Commodity_1 Commm2 = new Commodity_1();
     protected void Page_Load(object sender, EventArgs e)
     {
         Carousel = new biz().GETIMG("Carousel");///轮播图片
@@ -29,29 +33,28 @@ public partial class home_index : System.Web.UI.Page
         tianpin = new biz().GetMoK("tianpin");
 
 
-        Commodity_type = new biz().GetCommodity_type();//取A级目录
+        Commodity_Type = new biz().GetCommodity_type();//取A级目录
         
 
-       Commodity_1 = Details(Commodity_type);//取B级目录
+       Commodity_1 = Details(Commodity_Type);//取B级目录
         
 
        Commodity = Details1(Commodity_1);//c
        
 
-        var Comm1 = new biz().GetCommodityTD(6);//取第一模块top标题
-        Comm1 = Comm1;
+         Comm1 = new biz().GetCommodityTD(6);//取第一模块top标题
+       
 
 
-        var Comm = Details5(Comm1);//
-        Comm = Comm;
-
+         Comm = Details5(Comm1);//
+       
         //var Comm2 = Details2(Comm1, Comm);//取模块的每个目录的首个商品
         //Comm2 = Comm2;
 
 
-        var Commm2 = new biz().GetCommodityTD(7);
-        Commm2 = Commm2;
-        var Commm = Details5(Commm2);//
+         Commm2 = new biz().GetCommodityTD(7);
+      
+        Commm = Details5(Commm2);//
         Commm = Commm;
 
 

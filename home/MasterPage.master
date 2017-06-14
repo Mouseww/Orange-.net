@@ -80,6 +80,15 @@
                     <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
                     <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
                 </form>
+                <script>
+
+            $('#ai-topsearch').click(function() {
+                if ($('#searchInput').text != null) {
+                   
+                    document.location.href = "introduction.aspx?Name=" + $('#searchInput').val();
+                }
+            })
+        </script>
             </div>
         </div>
         <form id="form1" runat="server">

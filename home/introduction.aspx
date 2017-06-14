@@ -128,6 +128,26 @@
 						<div class="tb-detail-list">
 							<!--价格-->
 							<div class="tb-detail-price">
+                                <!--活动	-->
+							<div class="shopPromotion gold">
+								<div class="hot">
+									<dt class="tb-metatit">店铺优惠</dt>
+									<div class="gold-list">
+										<p>购物满2件打8折，满3件7折<span>点击领券<i class="am-icon-sort-down"></i></span></p>
+									</div>
+								</div>
+								<div class="clear"></div>
+								<div class="coupon">
+									<dt class="tb-metatit">优惠券</dt>
+									<div class="gold-list">
+										<ul>
+											<li>125减5</li>
+											<li>198减10</li>
+											<li>298减20</li>
+										</ul>
+									</div>
+								</div>
+							</div>
 								<li class="price iteminfo_price">
 									<dt>促销价</dt>
 									<dd><em>¥</em><b class="sys_item_price">56.90</b>  </dd>                                 
@@ -229,6 +249,23 @@
 														<div class="btn am-btn am-btn-warning">确认</div>
 														<div class="btn close am-btn am-btn-warning">取消</div>
 													</div>
+                                                    <div class="pay">
+							<div class="pay-opt">
+							<a href="home.html"><span class="am-icon-home am-icon-fw">首页</span></a>
+							<a><span class="am-icon-heart am-icon-fw">收藏</span></a>
+							
+							</div>
+							<li>
+								<div class="clearfix tb-btn tb-btn-buy theme-login">
+									<a id="LikBuy" title="点此按钮到下一步确认购买信息" href="#">立即购买</a>
+								</div>
+							</li>
+							<li>
+								<div class="clearfix tb-btn tb-btn-basket theme-login">
+									<a id="LikBasket" title="加入购物车" href="#"><i></i>加入购物车</a>
+								</div>
+							</li>
+						</div>
 												</div>
 												<div class="theme-signin-right">
 													<div class="img-info">
@@ -248,45 +285,10 @@
 								</dd>
 							</dl>
 							<div class="clear"></div>
-							<!--活动	-->
-							<div class="shopPromotion gold">
-								<div class="hot">
-									<dt class="tb-metatit">店铺优惠</dt>
-									<div class="gold-list">
-										<p>购物满2件打8折，满3件7折<span>点击领券<i class="am-icon-sort-down"></i></span></p>
-									</div>
-								</div>
-								<div class="clear"></div>
-								<div class="coupon">
-									<dt class="tb-metatit">优惠券</dt>
-									<div class="gold-list">
-										<ul>
-											<li>125减5</li>
-											<li>198减10</li>
-											<li>298减20</li>
-										</ul>
-									</div>
-								</div>
-							</div>
+							
 						</div>
 
-						<div class="pay">
-							<div class="pay-opt">
-							<a href="home.html"><span class="am-icon-home am-icon-fw">首页</span></a>
-							<a><span class="am-icon-heart am-icon-fw">收藏</span></a>
-							
-							</div>
-							<li>
-								<div class="clearfix tb-btn tb-btn-buy theme-login">
-									<a id="LikBuy" title="点此按钮到下一步确认购买信息" href="#">立即购买</a>
-								</div>
-							</li>
-							<li>
-								<div class="clearfix tb-btn tb-btn-basket theme-login">
-									<a id="LikBasket" title="加入购物车" href="#"><i></i>加入购物车</a>
-								</div>
-							</li>
-						</div>
+						
 
 					</div>
 
