@@ -635,16 +635,16 @@ namespace Orange商城
                 .Select(a => new ShopCars
                 {
                     Id = a.Id,
-                    shop_name = ((Commodities)db.Commodities.First(b => b.Id == a.Commodity_Id)).Name,
+                    shop_name = a.Commodity_attribute.Name,
                     option1 = a.Commodity_option1.option,
                     option1_id = a.Commodity_option1.Id,
                     option1_name = a.Commodity_option1.type_name,
                     option2 = a.Commodity_option2.option,
                     option2_id = a.Commodity_option2.Id,
                     option2_name = a.Commodity_option2.type_name,
-                    Commodity_id = ((Commodities)db.Commodities.First(b => b.Id == a.Commodity_Id)).Id,
-                    img = ((Commodities)db.Commodities.First(b => b.Id == a.Commodity_Id)).img,
-                    img_small = ((Commodities)db.Commodities.First(b => b.Id == a.Commodity_Id)).img_small,
+
+                    img = a.Commodity_attribute.Commodities.img,
+                   // img_small = a.Commodities.img_small,
                     Price = a.Price,
                     Old_Price = a.Old_Price,
                     Number = a.Number
@@ -691,7 +691,12 @@ namespace Orange商城
                 }).ToList();
         }
 
-
+        /// <summary>
+        /// 动态获取价格
+        /// </summary>
+        /// <param name="attr_option1"></param>
+        /// <param name="attr_option2"></param>
+        /// <returns></returns>
         public IList<Commodity_attribute> bizChangePrice(int attr_option1, int attr_option2)
         {
             var price = db.Commodity_attribute.Where(a => a.Commodity_option1.Id == attr_option1 && a.Commodity_option2.Id == attr_option2).ToList();

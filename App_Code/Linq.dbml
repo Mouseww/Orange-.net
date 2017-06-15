@@ -12,6 +12,7 @@
       <Column Name="jieshao" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Price_old" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="Time" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Commodities_Commodity_attribute" Member="Commodity_attribute" ThisKey="Id" OtherKey="Commodity_Id" Type="Commodity_attribute" />
       <Association Name="Commodity_2_Commodities" Member="Commodity_2" ThisKey="ID_ID" OtherKey="ID" Type="Commodity_2" IsForeignKey="true" />
     </Type>
   </Table>
@@ -56,8 +57,11 @@
       <Column Name="Price_old" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="Time" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="Commodity_attribute_Orders" Member="Orders" ThisKey="Id" OtherKey="Commodity_Id" Type="Orders" />
+      <Association Name="Commodity_attribute_Shopcarts" Member="Shopcarts" ThisKey="Id" OtherKey="Commodity_Id" Type="Shopcarts" />
+      <Association Name="Commodity_attribute_Shopcarts1" Member="Shopcarts1" ThisKey="Id" OtherKey="Commodity_Id" Type="Shopcarts" />
       <Association Name="Commodity_option1_Commodity_attribute" Member="Commodity_option1" ThisKey="Commodity_option1_Id" OtherKey="Id" Type="Commodity_option1" IsForeignKey="true" />
       <Association Name="Commodity_option2_Commodity_attribute" Member="Commodity_option2" ThisKey="Commodity_option2_Id" OtherKey="Id" Type="Commodity_option2" IsForeignKey="true" />
+      <Association Name="Commodities_Commodity_attribute" Member="Commodities" ThisKey="Commodity_Id" OtherKey="Id" Type="Commodities" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Commodity_type" Member="Commodity_type">
@@ -101,20 +105,6 @@
       <Column Name="describe1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="describe2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Commodity_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Shopcarts" Member="Shopcarts">
-    <Type Name="Shopcarts">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Username" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Commodity_option1_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Commodity_option2_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Commodity_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Old_Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Association Name="Commodity_option1_Shopcarts" Member="Commodity_option1" ThisKey="Commodity_option1_Id" OtherKey="Id" Type="Commodity_option1" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="Commodity_option2_Shopcarts" Member="Commodity_option2" ThisKey="Commodity_option2_Id" OtherKey="Id" Type="Commodity_option2" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Orders" Member="Orders">
@@ -170,6 +160,22 @@
       <Column Name="username" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="User_IN_Users" Member="Users" ThisKey="ID" OtherKey="User_IN_ID" Type="Users" />
       <Association Name="User_IN_Users1" Member="Users1" ThisKey="ID" OtherKey="User_IN_ID" Type="Users" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Shopcarts" Member="Shopcarts">
+    <Type Name="Shopcarts">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Commodity_option1_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Commodity_option2_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Commodity_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Old_Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="Commodity_option1_Shopcarts" Member="Commodity_option1" ThisKey="Commodity_option1_Id" OtherKey="Id" Type="Commodity_option1" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Commodity_option2_Shopcarts" Member="Commodity_option2" ThisKey="Commodity_option2_Id" OtherKey="Id" Type="Commodity_option2" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Commodity_attribute_Shopcarts" Member="Commodity_attribute" ThisKey="Commodity_Id" OtherKey="Id" Type="Commodity_attribute" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Commodity_attribute_Shopcarts1" Member="Commodity_attribute1" ThisKey="Commodity_Id" OtherKey="Id" Type="Commodity_attribute" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

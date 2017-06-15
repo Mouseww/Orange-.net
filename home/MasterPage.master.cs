@@ -13,11 +13,13 @@ public partial class home_MasterPage : System.Web.UI.MasterPage
     public int res;
     protected void Page_Load(object sender, EventArgs e)
     {
+       
         user = (VMUser)Session["User"];
         if (user != null)
         {
             res = new biz().shopcart_number(user);
         }
+     
 
     }
 }
