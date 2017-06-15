@@ -53,9 +53,6 @@ public partial class LinqDataContext : System.Data.Linq.DataContext
   partial void InsertIMGs(IMGs instance);
   partial void UpdateIMGs(IMGs instance);
   partial void DeleteIMGs(IMGs instance);
-  partial void InsertShopcarts(Shopcarts instance);
-  partial void UpdateShopcarts(Shopcarts instance);
-  partial void DeleteShopcarts(Shopcarts instance);
   partial void InsertOrders(Orders instance);
   partial void UpdateOrders(Orders instance);
   partial void DeleteOrders(Orders instance);
@@ -68,6 +65,9 @@ public partial class LinqDataContext : System.Data.Linq.DataContext
   partial void InsertUser_IN(User_IN instance);
   partial void UpdateUser_IN(User_IN instance);
   partial void DeleteUser_IN(User_IN instance);
+  partial void InsertShopcarts(Shopcarts instance);
+  partial void UpdateShopcarts(Shopcarts instance);
+  partial void DeleteShopcarts(Shopcarts instance);
   #endregion
 	
 	public LinqDataContext() : 
@@ -164,14 +164,6 @@ public partial class LinqDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<Shopcarts> Shopcarts
-	{
-		get
-		{
-			return this.GetTable<Shopcarts>();
-		}
-	}
-	
 	public System.Data.Linq.Table<Orders> Orders
 	{
 		get
@@ -203,6 +195,14 @@ public partial class LinqDataContext : System.Data.Linq.DataContext
 			return this.GetTable<User_IN>();
 		}
 	}
+	
+	public System.Data.Linq.Table<Shopcarts> Shopcarts
+	{
+		get
+		{
+			return this.GetTable<Shopcarts>();
+		}
+	}
 }
 
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Commodities")]
@@ -230,6 +230,8 @@ public partial class Commodities : INotifyPropertyChanging, INotifyPropertyChang
 	private double _Price_old;
 	
 	private string _Time;
+	
+	private EntitySet<Commodity_attribute> _Commodity_attribute;
 	
 	private EntityRef<Commodity_2> _Commodity_2;
 	
@@ -261,6 +263,7 @@ public partial class Commodities : INotifyPropertyChanging, INotifyPropertyChang
 	
 	public Commodities()
 	{
+		this._Commodity_attribute = new EntitySet<Commodity_attribute>(new Action<Commodity_attribute>(this.attach_Commodity_attribute), new Action<Commodity_attribute>(this.detach_Commodity_attribute));
 		this._Commodity_2 = default(EntityRef<Commodity_2>);
 		OnCreated();
 	}
@@ -469,6 +472,19 @@ public partial class Commodities : INotifyPropertyChanging, INotifyPropertyChang
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Commodities_Commodity_attribute", Storage="_Commodity_attribute", ThisKey="Id", OtherKey="Commodity_Id")]
+	public EntitySet<Commodity_attribute> Commodity_attribute
+	{
+		get
+		{
+			return this._Commodity_attribute;
+		}
+		set
+		{
+			this._Commodity_attribute.Assign(value);
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Commodity_2_Commodities", Storage="_Commodity_2", ThisKey="ID_ID", OtherKey="ID", IsForeignKey=true)]
 	public Commodity_2 Commodity_2
 	{
@@ -521,6 +537,18 @@ public partial class Commodities : INotifyPropertyChanging, INotifyPropertyChang
 		{
 			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
+	}
+	
+	private void attach_Commodity_attribute(Commodity_attribute entity)
+	{
+		this.SendPropertyChanging();
+		entity.Commodities = this;
+	}
+	
+	private void detach_Commodity_attribute(Commodity_attribute entity)
+	{
+		this.SendPropertyChanging();
+		entity.Commodities = null;
 	}
 }
 
@@ -1252,9 +1280,15 @@ public partial class Commodity_attribute : INotifyPropertyChanging, INotifyPrope
 	
 	private EntitySet<Orders> _Orders;
 	
+	private EntitySet<Shopcarts> _Shopcarts;
+	
+	private EntitySet<Shopcarts> _Shopcarts1;
+	
 	private EntityRef<Commodity_option1> _Commodity_option1;
 	
 	private EntityRef<Commodity_option2> _Commodity_option2;
+	
+	private EntityRef<Commodities> _Commodities;
 	
     #region 可扩展性方法定义
     partial void OnLoaded();
@@ -1283,8 +1317,11 @@ public partial class Commodity_attribute : INotifyPropertyChanging, INotifyPrope
 	public Commodity_attribute()
 	{
 		this._Orders = new EntitySet<Orders>(new Action<Orders>(this.attach_Orders), new Action<Orders>(this.detach_Orders));
+		this._Shopcarts = new EntitySet<Shopcarts>(new Action<Shopcarts>(this.attach_Shopcarts), new Action<Shopcarts>(this.detach_Shopcarts));
+		this._Shopcarts1 = new EntitySet<Shopcarts>(new Action<Shopcarts>(this.attach_Shopcarts1), new Action<Shopcarts>(this.detach_Shopcarts1));
 		this._Commodity_option1 = default(EntityRef<Commodity_option1>);
 		this._Commodity_option2 = default(EntityRef<Commodity_option2>);
+		this._Commodities = default(EntityRef<Commodities>);
 		OnCreated();
 	}
 	
@@ -1359,6 +1396,10 @@ public partial class Commodity_attribute : INotifyPropertyChanging, INotifyPrope
 		{
 			if ((this._Commodity_Id != value))
 			{
+				if (this._Commodities.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
 				this.OnCommodity_IdChanging(value);
 				this.SendPropertyChanging();
 				this._Commodity_Id = value;
@@ -1489,6 +1530,32 @@ public partial class Commodity_attribute : INotifyPropertyChanging, INotifyPrope
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Commodity_attribute_Shopcarts", Storage="_Shopcarts", ThisKey="Id", OtherKey="Commodity_Id")]
+	public EntitySet<Shopcarts> Shopcarts
+	{
+		get
+		{
+			return this._Shopcarts;
+		}
+		set
+		{
+			this._Shopcarts.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Commodity_attribute_Shopcarts1", Storage="_Shopcarts1", ThisKey="Id", OtherKey="Commodity_Id")]
+	public EntitySet<Shopcarts> Shopcarts1
+	{
+		get
+		{
+			return this._Shopcarts1;
+		}
+		set
+		{
+			this._Shopcarts1.Assign(value);
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Commodity_option1_Commodity_attribute", Storage="_Commodity_option1", ThisKey="Commodity_option1_Id", OtherKey="Id", IsForeignKey=true)]
 	public Commodity_option1 Commodity_option1
 	{
@@ -1557,6 +1624,40 @@ public partial class Commodity_attribute : INotifyPropertyChanging, INotifyPrope
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Commodities_Commodity_attribute", Storage="_Commodities", ThisKey="Commodity_Id", OtherKey="Id", IsForeignKey=true)]
+	public Commodities Commodities
+	{
+		get
+		{
+			return this._Commodities.Entity;
+		}
+		set
+		{
+			Commodities previousValue = this._Commodities.Entity;
+			if (((previousValue != value) 
+						|| (this._Commodities.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Commodities.Entity = null;
+					previousValue.Commodity_attribute.Remove(this);
+				}
+				this._Commodities.Entity = value;
+				if ((value != null))
+				{
+					value.Commodity_attribute.Add(this);
+					this._Commodity_Id = value.Id;
+				}
+				else
+				{
+					this._Commodity_Id = default(Nullable<int>);
+				}
+				this.SendPropertyChanged("Commodities");
+			}
+		}
+	}
+	
 	public event PropertyChangingEventHandler PropertyChanging;
 	
 	public event PropertyChangedEventHandler PropertyChanged;
@@ -1587,6 +1688,30 @@ public partial class Commodity_attribute : INotifyPropertyChanging, INotifyPrope
 	{
 		this.SendPropertyChanging();
 		entity.Commodity_attribute = null;
+	}
+	
+	private void attach_Shopcarts(Shopcarts entity)
+	{
+		this.SendPropertyChanging();
+		entity.Commodity_attribute = this;
+	}
+	
+	private void detach_Shopcarts(Shopcarts entity)
+	{
+		this.SendPropertyChanging();
+		entity.Commodity_attribute = null;
+	}
+	
+	private void attach_Shopcarts1(Shopcarts entity)
+	{
+		this.SendPropertyChanging();
+		entity.Commodity_attribute1 = this;
+	}
+	
+	private void detach_Shopcarts1(Shopcarts entity)
+	{
+		this.SendPropertyChanging();
+		entity.Commodity_attribute1 = null;
 	}
 }
 
@@ -2393,318 +2518,6 @@ public partial class IMGs : INotifyPropertyChanging, INotifyPropertyChanged
 				this._Commodity_Id = value;
 				this.SendPropertyChanged("Commodity_Id");
 				this.OnCommodity_IdChanged();
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Shopcarts")]
-public partial class Shopcarts : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _Id;
-	
-	private string _Username;
-	
-	private int _Number;
-	
-	private int _Commodity_option1_Id;
-	
-	private int _Commodity_option2_Id;
-	
-	private int _Commodity_Id;
-	
-	private double _Price;
-	
-	private double _Old_Price;
-	
-	private EntityRef<Commodity_option1> _Commodity_option1;
-	
-	private EntityRef<Commodity_option2> _Commodity_option2;
-	
-    #region 可扩展性方法定义
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnUsernameChanging(string value);
-    partial void OnUsernameChanged();
-    partial void OnNumberChanging(int value);
-    partial void OnNumberChanged();
-    partial void OnCommodity_option1_IdChanging(int value);
-    partial void OnCommodity_option1_IdChanged();
-    partial void OnCommodity_option2_IdChanging(int value);
-    partial void OnCommodity_option2_IdChanged();
-    partial void OnCommodity_IdChanging(int value);
-    partial void OnCommodity_IdChanged();
-    partial void OnPriceChanging(double value);
-    partial void OnPriceChanged();
-    partial void OnOld_PriceChanging(double value);
-    partial void OnOld_PriceChanged();
-    #endregion
-	
-	public Shopcarts()
-	{
-		this._Commodity_option1 = default(EntityRef<Commodity_option1>);
-		this._Commodity_option2 = default(EntityRef<Commodity_option2>);
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int Id
-	{
-		get
-		{
-			return this._Id;
-		}
-		set
-		{
-			if ((this._Id != value))
-			{
-				this.OnIdChanging(value);
-				this.SendPropertyChanging();
-				this._Id = value;
-				this.SendPropertyChanged("Id");
-				this.OnIdChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="NVarChar(MAX)")]
-	public string Username
-	{
-		get
-		{
-			return this._Username;
-		}
-		set
-		{
-			if ((this._Username != value))
-			{
-				this.OnUsernameChanging(value);
-				this.SendPropertyChanging();
-				this._Username = value;
-				this.SendPropertyChanged("Username");
-				this.OnUsernameChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Number", DbType="Int NOT NULL")]
-	public int Number
-	{
-		get
-		{
-			return this._Number;
-		}
-		set
-		{
-			if ((this._Number != value))
-			{
-				this.OnNumberChanging(value);
-				this.SendPropertyChanging();
-				this._Number = value;
-				this.SendPropertyChanged("Number");
-				this.OnNumberChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Commodity_option1_Id", DbType="Int NOT NULL")]
-	public int Commodity_option1_Id
-	{
-		get
-		{
-			return this._Commodity_option1_Id;
-		}
-		set
-		{
-			if ((this._Commodity_option1_Id != value))
-			{
-				if (this._Commodity_option1.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnCommodity_option1_IdChanging(value);
-				this.SendPropertyChanging();
-				this._Commodity_option1_Id = value;
-				this.SendPropertyChanged("Commodity_option1_Id");
-				this.OnCommodity_option1_IdChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Commodity_option2_Id", DbType="Int NOT NULL")]
-	public int Commodity_option2_Id
-	{
-		get
-		{
-			return this._Commodity_option2_Id;
-		}
-		set
-		{
-			if ((this._Commodity_option2_Id != value))
-			{
-				if (this._Commodity_option2.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnCommodity_option2_IdChanging(value);
-				this.SendPropertyChanging();
-				this._Commodity_option2_Id = value;
-				this.SendPropertyChanged("Commodity_option2_Id");
-				this.OnCommodity_option2_IdChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Commodity_Id", DbType="Int NOT NULL")]
-	public int Commodity_Id
-	{
-		get
-		{
-			return this._Commodity_Id;
-		}
-		set
-		{
-			if ((this._Commodity_Id != value))
-			{
-				this.OnCommodity_IdChanging(value);
-				this.SendPropertyChanging();
-				this._Commodity_Id = value;
-				this.SendPropertyChanged("Commodity_Id");
-				this.OnCommodity_IdChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float NOT NULL")]
-	public double Price
-	{
-		get
-		{
-			return this._Price;
-		}
-		set
-		{
-			if ((this._Price != value))
-			{
-				this.OnPriceChanging(value);
-				this.SendPropertyChanging();
-				this._Price = value;
-				this.SendPropertyChanged("Price");
-				this.OnPriceChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Old_Price", DbType="Float NOT NULL")]
-	public double Old_Price
-	{
-		get
-		{
-			return this._Old_Price;
-		}
-		set
-		{
-			if ((this._Old_Price != value))
-			{
-				this.OnOld_PriceChanging(value);
-				this.SendPropertyChanging();
-				this._Old_Price = value;
-				this.SendPropertyChanged("Old_Price");
-				this.OnOld_PriceChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Commodity_option1_Shopcarts", Storage="_Commodity_option1", ThisKey="Commodity_option1_Id", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-	public Commodity_option1 Commodity_option1
-	{
-		get
-		{
-			return this._Commodity_option1.Entity;
-		}
-		set
-		{
-			Commodity_option1 previousValue = this._Commodity_option1.Entity;
-			if (((previousValue != value) 
-						|| (this._Commodity_option1.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._Commodity_option1.Entity = null;
-					previousValue.Shopcarts.Remove(this);
-				}
-				this._Commodity_option1.Entity = value;
-				if ((value != null))
-				{
-					value.Shopcarts.Add(this);
-					this._Commodity_option1_Id = value.Id;
-				}
-				else
-				{
-					this._Commodity_option1_Id = default(int);
-				}
-				this.SendPropertyChanged("Commodity_option1");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Commodity_option2_Shopcarts", Storage="_Commodity_option2", ThisKey="Commodity_option2_Id", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-	public Commodity_option2 Commodity_option2
-	{
-		get
-		{
-			return this._Commodity_option2.Entity;
-		}
-		set
-		{
-			Commodity_option2 previousValue = this._Commodity_option2.Entity;
-			if (((previousValue != value) 
-						|| (this._Commodity_option2.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._Commodity_option2.Entity = null;
-					previousValue.Shopcarts.Remove(this);
-				}
-				this._Commodity_option2.Entity = value;
-				if ((value != null))
-				{
-					value.Shopcarts.Add(this);
-					this._Commodity_option2_Id = value.Id;
-				}
-				else
-				{
-					this._Commodity_option2_Id = default(int);
-				}
-				this.SendPropertyChanged("Commodity_option2");
 			}
 		}
 	}
@@ -3912,6 +3725,396 @@ public partial class User_IN : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		this.SendPropertyChanging();
 		entity.User_IN1 = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Shopcarts")]
+public partial class Shopcarts : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private string _Username;
+	
+	private int _Number;
+	
+	private int _Commodity_option1_Id;
+	
+	private int _Commodity_option2_Id;
+	
+	private int _Commodity_Id;
+	
+	private double _Price;
+	
+	private double _Old_Price;
+	
+	private EntityRef<Commodity_option1> _Commodity_option1;
+	
+	private EntityRef<Commodity_option2> _Commodity_option2;
+	
+	private EntityRef<Commodity_attribute> _Commodity_attribute;
+	
+	private EntityRef<Commodity_attribute> _Commodity_attribute1;
+	
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnUsernameChanging(string value);
+    partial void OnUsernameChanged();
+    partial void OnNumberChanging(int value);
+    partial void OnNumberChanged();
+    partial void OnCommodity_option1_IdChanging(int value);
+    partial void OnCommodity_option1_IdChanged();
+    partial void OnCommodity_option2_IdChanging(int value);
+    partial void OnCommodity_option2_IdChanged();
+    partial void OnCommodity_IdChanging(int value);
+    partial void OnCommodity_IdChanged();
+    partial void OnPriceChanging(double value);
+    partial void OnPriceChanged();
+    partial void OnOld_PriceChanging(double value);
+    partial void OnOld_PriceChanged();
+    #endregion
+	
+	public Shopcarts()
+	{
+		this._Commodity_option1 = default(EntityRef<Commodity_option1>);
+		this._Commodity_option2 = default(EntityRef<Commodity_option2>);
+		this._Commodity_attribute = default(EntityRef<Commodity_attribute>);
+		this._Commodity_attribute1 = default(EntityRef<Commodity_attribute>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="NVarChar(MAX)")]
+	public string Username
+	{
+		get
+		{
+			return this._Username;
+		}
+		set
+		{
+			if ((this._Username != value))
+			{
+				this.OnUsernameChanging(value);
+				this.SendPropertyChanging();
+				this._Username = value;
+				this.SendPropertyChanged("Username");
+				this.OnUsernameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Number", DbType="Int NOT NULL")]
+	public int Number
+	{
+		get
+		{
+			return this._Number;
+		}
+		set
+		{
+			if ((this._Number != value))
+			{
+				this.OnNumberChanging(value);
+				this.SendPropertyChanging();
+				this._Number = value;
+				this.SendPropertyChanged("Number");
+				this.OnNumberChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Commodity_option1_Id", DbType="Int NOT NULL")]
+	public int Commodity_option1_Id
+	{
+		get
+		{
+			return this._Commodity_option1_Id;
+		}
+		set
+		{
+			if ((this._Commodity_option1_Id != value))
+			{
+				if (this._Commodity_option1.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnCommodity_option1_IdChanging(value);
+				this.SendPropertyChanging();
+				this._Commodity_option1_Id = value;
+				this.SendPropertyChanged("Commodity_option1_Id");
+				this.OnCommodity_option1_IdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Commodity_option2_Id", DbType="Int NOT NULL")]
+	public int Commodity_option2_Id
+	{
+		get
+		{
+			return this._Commodity_option2_Id;
+		}
+		set
+		{
+			if ((this._Commodity_option2_Id != value))
+			{
+				if (this._Commodity_option2.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnCommodity_option2_IdChanging(value);
+				this.SendPropertyChanging();
+				this._Commodity_option2_Id = value;
+				this.SendPropertyChanged("Commodity_option2_Id");
+				this.OnCommodity_option2_IdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Commodity_Id", DbType="Int NOT NULL")]
+	public int Commodity_Id
+	{
+		get
+		{
+			return this._Commodity_Id;
+		}
+		set
+		{
+			if ((this._Commodity_Id != value))
+			{
+				if ((this._Commodity_attribute.HasLoadedOrAssignedValue || this._Commodity_attribute1.HasLoadedOrAssignedValue))
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnCommodity_IdChanging(value);
+				this.SendPropertyChanging();
+				this._Commodity_Id = value;
+				this.SendPropertyChanged("Commodity_Id");
+				this.OnCommodity_IdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float NOT NULL")]
+	public double Price
+	{
+		get
+		{
+			return this._Price;
+		}
+		set
+		{
+			if ((this._Price != value))
+			{
+				this.OnPriceChanging(value);
+				this.SendPropertyChanging();
+				this._Price = value;
+				this.SendPropertyChanged("Price");
+				this.OnPriceChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Old_Price", DbType="Float NOT NULL")]
+	public double Old_Price
+	{
+		get
+		{
+			return this._Old_Price;
+		}
+		set
+		{
+			if ((this._Old_Price != value))
+			{
+				this.OnOld_PriceChanging(value);
+				this.SendPropertyChanging();
+				this._Old_Price = value;
+				this.SendPropertyChanged("Old_Price");
+				this.OnOld_PriceChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Commodity_option1_Shopcarts", Storage="_Commodity_option1", ThisKey="Commodity_option1_Id", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+	public Commodity_option1 Commodity_option1
+	{
+		get
+		{
+			return this._Commodity_option1.Entity;
+		}
+		set
+		{
+			Commodity_option1 previousValue = this._Commodity_option1.Entity;
+			if (((previousValue != value) 
+						|| (this._Commodity_option1.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Commodity_option1.Entity = null;
+					previousValue.Shopcarts.Remove(this);
+				}
+				this._Commodity_option1.Entity = value;
+				if ((value != null))
+				{
+					value.Shopcarts.Add(this);
+					this._Commodity_option1_Id = value.Id;
+				}
+				else
+				{
+					this._Commodity_option1_Id = default(int);
+				}
+				this.SendPropertyChanged("Commodity_option1");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Commodity_option2_Shopcarts", Storage="_Commodity_option2", ThisKey="Commodity_option2_Id", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+	public Commodity_option2 Commodity_option2
+	{
+		get
+		{
+			return this._Commodity_option2.Entity;
+		}
+		set
+		{
+			Commodity_option2 previousValue = this._Commodity_option2.Entity;
+			if (((previousValue != value) 
+						|| (this._Commodity_option2.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Commodity_option2.Entity = null;
+					previousValue.Shopcarts.Remove(this);
+				}
+				this._Commodity_option2.Entity = value;
+				if ((value != null))
+				{
+					value.Shopcarts.Add(this);
+					this._Commodity_option2_Id = value.Id;
+				}
+				else
+				{
+					this._Commodity_option2_Id = default(int);
+				}
+				this.SendPropertyChanged("Commodity_option2");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Commodity_attribute_Shopcarts", Storage="_Commodity_attribute", ThisKey="Commodity_Id", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+	public Commodity_attribute Commodity_attribute
+	{
+		get
+		{
+			return this._Commodity_attribute.Entity;
+		}
+		set
+		{
+			Commodity_attribute previousValue = this._Commodity_attribute.Entity;
+			if (((previousValue != value) 
+						|| (this._Commodity_attribute.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Commodity_attribute.Entity = null;
+					previousValue.Shopcarts.Remove(this);
+				}
+				this._Commodity_attribute.Entity = value;
+				if ((value != null))
+				{
+					value.Shopcarts.Add(this);
+					this._Commodity_Id = value.Id;
+				}
+				else
+				{
+					this._Commodity_Id = default(int);
+				}
+				this.SendPropertyChanged("Commodity_attribute");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Commodity_attribute_Shopcarts1", Storage="_Commodity_attribute1", ThisKey="Commodity_Id", OtherKey="Id", IsForeignKey=true)]
+	public Commodity_attribute Commodity_attribute1
+	{
+		get
+		{
+			return this._Commodity_attribute1.Entity;
+		}
+		set
+		{
+			Commodity_attribute previousValue = this._Commodity_attribute1.Entity;
+			if (((previousValue != value) 
+						|| (this._Commodity_attribute1.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Commodity_attribute1.Entity = null;
+					previousValue.Shopcarts1.Remove(this);
+				}
+				this._Commodity_attribute1.Entity = value;
+				if ((value != null))
+				{
+					value.Shopcarts1.Add(this);
+					this._Commodity_Id = value.Id;
+				}
+				else
+				{
+					this._Commodity_Id = default(int);
+				}
+				this.SendPropertyChanged("Commodity_attribute1");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
 	}
 }
 #pragma warning restore 1591

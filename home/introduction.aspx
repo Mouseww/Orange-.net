@@ -320,7 +320,7 @@
                                     
 								</dd>
 							</dl>
-                            @* 改变价格 *@
+                          
     <script>
         var Price = null;
         $(".sku-line").click(
@@ -359,12 +359,12 @@
 				</div>
                 <script>
        
-        $('a#LikBasket11').click(function () {
+        $('a#LikBasket').click(function () {
             if (attr_id1 != null && attr_id2 != null) {
                 var number = $('#text_box').val();
                 //document.location.href = "../Introduction/Index?id=@ViewBag.Introduction.Id&&Commodity_id="+Price+"&&attr=" + attr_id1 + "&&attr2=" + attr_id2 + "&&number=" + number + "&&Price=" + $('.sys_item_price').text() + "&&Old_Price=" + $('.sys_item_mktprice').text();
                 $.post("introduction.aspx", {"Introduction_id":"<%=Introduction.Id%>", "type":"add_shopcar","Commodity_id": Price, "attr": attr_id1, "attr2": attr_id2, "number": number, "Price": $('.sys_item_price').text(), "Old_Price": $('.sys_item_mktprice').text() }, function (data) {
-                    alert(data);
+                    alert('添加成功');
                 })
             }
             else {

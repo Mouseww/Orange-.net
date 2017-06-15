@@ -49,12 +49,14 @@
             
             <div class="login-links">
                
-								<a href="#" class="am-fr">忘记密码</a>
-								<a href="register.html" class="zcnext am-fr am-btn-default">注册</a>
 								<br />
             </div>
 								<div class="am-cf">
 									<asp:Button runat="server" ID="submit"  Text="登 录" class="am-btn am-btn-primary am-btn-sm" OnClick="submit_Click"/>
+								</div>
+                      
+								<div class="am-cf">
+									<a href="register.aspx" ID="dl" style="font-size:1em"   class="am-btn am-btn-primary am-btn-sm">点击注册</a>
 								</div>
 						<div class="partner">		
 								<h3>合作账号</h3>

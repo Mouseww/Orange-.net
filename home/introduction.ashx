@@ -23,13 +23,6 @@ public class introduction : IHttpHandler {
             return false;
         }
     }
-    /// <summary>
-    /// 获取价格变动
-    /// </summary>
-    public void chenge_Price()
-    {
-       
-    
-    }
+  
 
 }
