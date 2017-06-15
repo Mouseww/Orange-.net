@@ -11,8 +11,8 @@ public partial class person_password : System.Web.UI.Page
 {
     public bool flag = new bool();
     public VMUser user = new VMUser();
-    
-    String oldpsw, newpsw,msg;
+
+    String oldpsw, newpsw;
     protected void Page_Load(object sender, EventArgs e)
     {
         user = (VMUser)Session["User"];
@@ -28,11 +28,11 @@ public partial class person_password : System.Web.UI.Page
 
             if (flag)
             {
-                msg = "修改成功";
+                var msg = "修改成功";
             }
             else
             {
-               msg = "原密码错误";
+              var msg = "原密码错误";
             }
         }
    

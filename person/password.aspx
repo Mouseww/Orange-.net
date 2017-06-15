@@ -35,7 +35,7 @@
 						</div>
 
                                  <% if (msg !=null)
-                    {
+                                     {
                                      %>
                         <script>
                             $(function(){
@@ -47,7 +47,7 @@
                             })
                             
                         </script>
-                    }
+                    <%} %>
 
 						<div class="u-progress-bar total-steps-2">
 							<div class="u-progress-bar-inner"></div>

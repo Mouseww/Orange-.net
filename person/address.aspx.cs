@@ -44,7 +44,7 @@ public partial class person_address : System.Web.UI.Page
             }
             else
             {
-               end = new biz().Addaddress(Request.QueryString["user_name"], Request.QueryString["user_phone"], Request.QueryString["sheng"], Request.QueryString["city"], Request.QueryString["quyu"], Request.QueryString["xiangxi"],user.ID);
+               end = (bool)new biz().Addaddress(Request.QueryString["user_name"], Request.QueryString["user_phone"], Request.QueryString["sheng"], Request.QueryString["city"], Request.QueryString["quyu"], Request.QueryString["xiangxi"], Request.QueryString[user.ID]);
                 if (end)
                 {
                     Response.Write("<script>alert('操作成功')<script>");
