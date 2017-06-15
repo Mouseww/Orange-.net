@@ -17,6 +17,7 @@ public partial class home_introduction : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         user = (VMUser)Session["User"];
        
         try { int id = int.Parse(Request.QueryString["id"]);
@@ -39,9 +40,9 @@ public partial class home_introduction : System.Web.UI.Page
     
     public string add_shopcar()
     {
-        var user = (VMUser)Session["User"];
-        var Commodity_id=Request.Form["Commodity_id"];
-        string attr = Request.Form["attr"];
+    var user = (VMUser)Session["User"];
+    var Commodity_id=Request.Form["Commodity_id"];
+    string attr = Request.Form["attr"];
     string attr2 = Request.Form["attr2"];
     string number = Request.Form["number"];
     string Price = Request.Form["Price"];

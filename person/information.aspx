@@ -34,7 +34,7 @@
 							<p class="am-form-help">头像</p>
 
 							<div class="info-m">
-								<div><b>用户名：<i>小叮当</i></b></div>
+								<div><b>用户名：<i><%=user.username%></i></b></div>
 								<div class="u-level">
 									<span class="rank r2">
 							             <s class="vip1"></s><a class="classes" href="#">铜牌会员</a>
@@ -56,7 +56,23 @@
 								<div class="am-form-group">
 									<label for="user-name2" class="am-form-label">昵称</label>
 									<div class="am-form-content">
-										<input type="text" id="user-name2" placeholder="nickname">
+ <% 										
+     if (user.nikename != null)
+     {
+                                        %>
+
+        <input type="text" id="user-name1" value="<%=user.nikename%>">   
+                                        <%            
+}
+else
+{
+                                        %>  
+<input type="text" id="user-name1" placeholder="nikename">
+                                                    
+                                        
+<% }%>
+                                       
+                                            
 
 									</div>
 								</div>
@@ -64,7 +80,28 @@
 								<div class="am-form-group">
 									<label for="user-name" class="am-form-label">姓名</label>
 									<div class="am-form-content">
-										<input type="text" id="user-name2" placeholder="name">
+
+                                         <% 										
+     if (user.name != null)
+     {
+                                        %>
+
+        <input type="text" id="user-name2" value="<%=user.name %>"> 
+                                        <%            
+}
+else
+{
+                                        %>  
+<input type="text" id="user-name2" placeholder="name">
+                                                    
+                                        
+<% }%>
+
+
+
+			
+
+                                                     
 
 									</div>
 								</div>
@@ -87,39 +124,52 @@
 								<div class="am-form-group">
 									<label for="user-birth" class="am-form-label">生日</label>
 									<div class="am-form-content birth">
-										<div class="birth-select">
-											<select data-am-selected>
-												<option value="a">2015</option>
-												<option value="b">1987</option>
-											</select>
-											<em>年</em>
-										</div>
-										<div class="birth-select2">
-											<select data-am-selected>
-												<option value="a">12</option>
-												<option value="b">8</option>
-											</select>
-											<em>月</em></div>
-										<div class="birth-select2">
-											<select data-am-selected>
-												<option value="a">21</option>
-												<option value="b">23</option>
-											</select>
-											<em>日</em></div>
+									 
+                                        <% 
+                                            if (user.birthday != null)
+                                         {
+                                                    %>
+                                    <input class="am-form-label" value="<%=user.birthday%>" id="txtBeginDate" style="border:1px solid #E4EAEE"/>
+                                   <% 
+                                            }
+                                               else
+                                            {
+                                                   %>
+                                        <input class="am-form-label" id="txtBeginDate" style="border:1px solid #E4EAEE" />
+                                   <%} %> 
 									</div>
 							
 								</div>
 								<div class="am-form-group">
 									<label for="user-phone" class="am-form-label">电话</label>
 									<div class="am-form-content">
-										<input id="user-phone" placeholder="telephonenumber" type="tel">
+
+<% 										
+     if (user.telephone!= null)
+     {
+ %>
+
+        <input id="user-phone" value="<%=user.telephone%>" type="tel">
+                                        <%            
+}
+else
+{
+                                        %>  
+ <input id="user-phone" placeholder="telephonenumber" type="tel">
+                                                    
+                                        
+<% }%>
+
+
+									
+                              
 
 									</div>
 								</div>
 								<div class="am-form-group">
 									<label for="user-email" class="am-form-label">电子邮件</label>
 									<div class="am-form-content">
-										<input id="user-email" placeholder="Email" type="email">
+										<input id="user-email" disabled="" placeholder="<%=user.username%>" type="email">
 
 									</div>
 								</div>
@@ -152,6 +202,15 @@
 								<div class="info-btn">
 									<div class="am-btn am-btn-danger">保存修改</div>
 								</div>
+                                   <% if (user.sex == "男")
+                            {
+                                       %>
+                                <script>$('.Sex1').click();</script>
+                         <%  }
+                            else
+                            { %>
+                                <script>$('.Sex2').click();</script>
+                           <% }  %>
 
 							</form>
 						</div>

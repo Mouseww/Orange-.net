@@ -22,17 +22,8 @@
 
 							<li class="user-addresslist defaultAddr">
 								<span class="new-option-r"><i class="am-icon-check-circle"></i>默认地址</span>
-								<p class="new-tit new-p-re">
-									<span class="new-txt">小叮当</span>
-									<span class="new-txt-rd2">159****1622</span>
-								</p>
-								<div class="new-mu_l2a new-p-re">
-									<p class="new-mu_l2cw">
-										<span class="title">地址：</span>
-										<span class="province">湖北</span>省
-										<span class="city">武汉</span>市
-										<span class="dist">洪山</span>区
-										<span class="street">雄楚大道666号(中南财经政法大学)</span></p>
+                                
+							
 								</div>
 								<div class="new-addr-btn">
 									<a href="#"><i class="am-icon-edit"></i>编辑</a>
@@ -84,7 +75,9 @@
 						</ul>
 						<div class="clear"></div>
 						<a class="new-abtn-type" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0}">添加新地址</a>
-						<!--例子-->
+						
+                        
+                        <!--例子-->
 						<div class="am-modal am-modal-no-btn" id="doc-modal-1">
 
 							<div class="add-dress">

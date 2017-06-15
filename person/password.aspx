@@ -33,6 +33,22 @@
                             </span>
 							<span class="u-progress-placeholder"></span>
 						</div>
+
+                                 <% if (msg !=null)
+                    {
+                                     %>
+                        <script>
+                            $(function(){
+                                $('#step1').attr('class', 'step-2 step');
+                                $('#step2').attr('class', 'step-1 step');
+                                $('#demopsw').hide();
+                                $('#msg').show();
+                                $('.u-progress-bar total-steps-2').after("<div>@msg</div>")
+                            })
+                            
+                        </script>
+                    }
+
 						<div class="u-progress-bar total-steps-2">
 							<div class="u-progress-bar-inner"></div>
 						</div>
