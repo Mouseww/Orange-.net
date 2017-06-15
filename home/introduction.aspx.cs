@@ -17,88 +17,58 @@ public partial class home_introduction : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         user = (VMUser)Session["User"];
-        if (!IsPostBack)
-        {
-            try
-            {
-                int id = int.Parse(Request.QueryString["id"]);
-                Introduction = new biz().GetCommodityTD1(id);
+       
+        try { int id = int.Parse(Request.QueryString["id"]);
+            Introduction = new biz().GetCommodityTD1(id);
 
-                attr_option1 = new biz().show_option1(id);
+            attr_option1 = new biz().show_option1(id);
 
-                attr_option2 = new biz().show_option2(id);
-            }
-            catch
-            {
-                try {
-                    int Introduction_id1 = int.Parse(Request.Form["Introduction_id"]);
-                    Introduction = new biz().GetCommodityTD1(Introduction_id1);
-
-                    attr_option1 = new biz().show_option1(Introduction_id1);
-
-                    attr_option2 = new biz().show_option2(Introduction_id1);
-                }
-                catch { }
-            }
-            try
-            {
-
-                if (Request.Form["type"] == "add_shopcar")
-                {
-                    if (user != null)
-                    {
-                        var flag = add_shopcar();
-                        if (flag)
-                        {
-                            Response.Write("添加成功！");
-                        }
-                        else
-                        {
-                            Response.Write("添加失败！");
-                        }
-                    }
-                    else
-                    {
-                        Response.Write("请先登录！");
-                    }
-                }
-
-
-            }
-            catch { }
-
+            attr_option2 = new biz().show_option2(id);
         }
+        catch {
+         
+        }
+       
+
+
 
 
 
     }
     
-    public bool add_shopcar()
+    public string add_shopcar()
     {
-       
-        var Commodity_id=Request.Form["Commodity_id"];
-        string attr = Request.Form["attr"];
+    var user = (VMUser)Session["User"];
+    var Commodity_id=Request.Form["Commodity_id"];
+    string attr = Request.Form["attr"];
     string attr2 = Request.Form["attr2"];
     string number = Request.Form["number"];
     string Price = Request.Form["Price"];
     string Old_Price = Request.Form["Old_Price"];
         if (Commodity_id != null)
         {
-              var fl = new biz().AddShopcart(Commodity_id, attr, attr2, number, user.username, Price, Old_Price);
+            if (user != null)
+            {
+                var fl = new biz().AddShopcart(Commodity_id, attr, attr2, number, user.username, Price, Old_Price);
                 if (fl)
                 {
-                    return true;
+                    return "添加成功";
                 }
                 else
                 {
-                    return false;
+                    return "添加失败";
                 }
 
             }
-        return false;
-    }
-       
+            else
+            {
+                return "请先登录";
+            }
+            
+        }
+        return "出现异常错误";
 
-    
+    }
 }

@@ -7,11 +7,11 @@ using Orange商城;
 public class introduction : IHttpHandler {
     
     public void ProcessRequest (HttpContext context) {
+       
 
 
-
-         int attr_option1a = int.Parse(context.Request.Form["kouwei"]);
-        int attr_option2a = int.Parse(context.Request.Form["guige"]);
+       int attr_option1a = int.Parse(context.Request.Form["kouwei"]);
+       int attr_option2a = int.Parse(context.Request.Form["guige"]);
        var price1 = new biz().bizChangePrice(attr_option1a, attr_option2a);
        var  price = price1[0];
         
