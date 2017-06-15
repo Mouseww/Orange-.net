@@ -12,11 +12,12 @@ public partial class person_password : System.Web.UI.Page
     public bool flag = new bool();
     public VMUser user = new VMUser();
 
-    String oldpsw, newpsw;
+   public string oldpsw, newpsw,msg;
     protected void Page_Load(object sender, EventArgs e)
     {
         user = (VMUser)Session["User"];
-
+        oldpsw = Request.QueryString["oldpsw"];
+        newpsw = Request.QueryString["newpsw"];
         if (user == null)
         {
             Response.Write("<script>alert('请先登陆')<script>");
@@ -28,11 +29,11 @@ public partial class person_password : System.Web.UI.Page
 
             if (flag)
             {
-                var msg = "修改成功";
+                 msg = "修改成功";
             }
             else
             {
-              var msg = "原密码错误";
+              msg = "原密码错误";
             }
         }
    

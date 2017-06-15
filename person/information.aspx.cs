@@ -21,15 +21,17 @@ public partial class person_information : System.Web.UI.Page
         {
             // Result = "请先登录";
             Response.Write("<script>alert('请先登陆')<script>");
-            //return request("../Login/Login");
-            Response.Redirect("../Login/Login");
+        
+            Response.Redirect("../home/index.aspx");
         }
-        VMUser = user;
+   
         if (name1 != null)
         {
-            flag = new biz().UpUSer_IN(Request.QueryString["name1"], Request.QueryString["name2"], Request.QueryString["telephone"], Request.QueryString["birthday"], Request.QueryString["sex"], Request.QueryString["user.username"]);
+            string sex1 = Request.QueryString["sex"];
+
+            flag = new biz().UpUSer_IN(Request.QueryString["name1"], Request.QueryString["name2"], Request.QueryString["telephone"], Request.QueryString["birthday"], sex1,user.username);
             Session["User"] = new biz().refresh(user.username);
-            VMUser = (VMUser)Session["User"];
+            user = (VMUser)Session["User"];
         }
       //    return View();
     }
