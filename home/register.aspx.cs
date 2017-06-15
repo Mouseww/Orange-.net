@@ -21,7 +21,7 @@ public partial class home_register : System.Web.UI.Page
             var reader = new biz().AddUser(email.Text.Trim(), psw.Text.Trim());
             if (reader)
             {
-                Response.Write("<script>alert('注册成功')</script>");
+                Response.Write("<script>alert('注册成功')</script>"); 
 
             }
             else
