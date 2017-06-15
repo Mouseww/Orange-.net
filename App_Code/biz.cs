@@ -373,6 +373,14 @@ namespace Orange商城
         /// <returns></returns>
         public Boolean AddUser(string username, string password)
         {
+            try { 
+            var flag = db.Users.First(a => a.username == username);
+            if (flag != null)
+            {
+                return false;
+            }
+            }
+            catch { }
             User_IN user_in = new User_IN();
             user_in.username = username;
 

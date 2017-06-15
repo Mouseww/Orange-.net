@@ -26,14 +26,14 @@ public partial class home_Login : System.Web.UI.Page
             user1.username = user.Text.Trim();
             user1.password = password.Text.Trim();
             var reader = new biz().Login(user1);
-            if (reader != null)
+            if (reader.Count>0)
             {
                 Session["User"] =(VMUser)reader[0];
                 Response.Redirect("index.aspx");
             }
             else
             {
-                Response.Write("<script>alert('用户名或密码错误')");
+                Response.Write("<script>alert('用户名或密码错误')</script>");
             }
         }
     }
