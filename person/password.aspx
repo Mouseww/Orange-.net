@@ -51,7 +51,7 @@
                         <div class="u-progress-bar-inner"></div>
                     </div>
                 </div>
-                <form class="am-form am-form-horizontal">
+                <div class="am-form am-form-horizontal">
                     <div id="demopsw">
                         <div class="am-form-group">
                             <label for="user-old-password" class="am-form-label">原密码</label>
@@ -100,7 +100,7 @@
                             }
                         })
                     </script>
-                </form>
+                </div>
 
             </div>
 

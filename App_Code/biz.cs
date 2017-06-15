@@ -360,14 +360,17 @@ namespace Orange商城
         /// <returns></returns>
         public Boolean Uppsw(string username, string oldpsw, string newpsw)
         {
-            var User = db.Users.First(a => a.username == username && a.password == oldpsw);
-            if (User == null)
+            try
+            {var  User = db.Users.First(a => a.username == username && a.password == oldpsw);
+                User.password = newpsw;
+                db.SubmitChanges();
+                return true; }
+
+             catch
             {
                 return false;
             }
-            User.password = newpsw;
-            db.SubmitChanges();
-            return true;
+           
         }
 
         /// <summary>

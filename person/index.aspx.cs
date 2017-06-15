@@ -14,7 +14,7 @@ public partial class person_index : System.Web.UI.Page
         if (user == null)
         {
 
-            Response.Redirect("Login.aspx");
+            Response.Redirect("../home/Login.aspx");
         }
 
     }
