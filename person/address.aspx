@@ -3,13 +3,20 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     	<link href="../AmazeUI-2.4.2/assets/css/admin.css" rel="stylesheet" type="text/css">
 		<link href="../AmazeUI-2.4.2/assets/css/amazeui.css" rel="stylesheet" type="text/css">
+    <link href="../css/personDate/lyz.calendar.css" rel="stylesheet" />
 
 		<link href="../css/personal.css" rel="stylesheet" type="text/css">
 		<link href="../css/addstyle.css" rel="stylesheet" type="text/css">
+    <link href="../css/personDate/address.css" rel="stylesheet" />
+    <script src="../layer/layer.js"></script>
+  
+    <script src="../js/personDate/address.js"></script>
+       <script type="text/javascript">
+        $(function () {
+            $("#sjld").sjld("#shenfen", "#chengshi", "#quyu");
 
-
-
-
+        });
+    </script>
             <div class="main-wrap">
                 <div class="user-address">
                     <!--标题 -->
@@ -136,9 +143,9 @@
                                         </p>
                                     </div>
                                     <div class="new-addr-btn">
-                                        <a href="javascript:void(0)" onclick="upclick_<%=ress1.id%> (this)" id="am_<%=ress1.id%>"><i class="am-icon-edit"></i>编辑</a>
+                                        <a href="javascript:void(0)" onclick="upclick<%=ress1.id%>()" id="am_<%=ress1.id%>"><i class="am-icon-edit"></i>编辑</a>
                                         <span class="new-addr-bar">|</span>
-                                        <a href="javascript:void(0);" onclick="delClick_<%=ress1.id%> (this);"><i class="am-icon-trash"></i>删除</a>
+                                        <a href="javascript:void(0);" onclick="delClick_<%=ress1.id%>(this);"><i class="am-icon-trash"></i>删除</a>
                                     </div>
                                 </li>
                            
@@ -150,7 +157,7 @@
 
                                 var script_<%=ress1.id%>="<script>function sub_<%=ress1.id%> (){document.location.href =\"../person/address1.aspx?user_name=\"+$('#user-name1').val()+\"&&user_phone=\" +$('#user-phone1').val()+ \"&&sheng=\" + $('#sheng_top1').text()+\"&&city=\"+$('#City_top1').text()+ \"&&quyu=\"+$('#town_top1').text()+ \"&&xiangxi=\" +$('#xiangxi_top1').val()+\"&&id=<%=ress1.id%>\"; }</"+sc_<%=ress1.id%>+">";
 
-                                    function upclick_<%=ress1.id%>() {
+                                    function upclick<%=ress1.id%>() {
                                         layer.open({
                                             type: 1
     , title: false //不显示标题栏
