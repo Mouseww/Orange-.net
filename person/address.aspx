@@ -61,7 +61,7 @@
                                     function upclick() {
                                         var sc_<%=ressfirst.id%> = "script";
 
-                                        var script_<%=ressfirst.id%>="<script>function sub_<%=ressfirst.id%> (){document.location.href =\"../person/address.aspx?user_name=\"+$('#user-name').val()+\"&&user_phone=\" +$('#user-phone').val()+ \"&&sheng=\" + $('#sheng_top').text()+\"&&city=\"+$('#City_top').text()+ \"&&quyu=\"+$('#town_top').text()+ \"&&xiangxi=\" +$('#xiangxi_top').val()+\"&&id=<%=ressfirst.id%>\"; }</"+sc_<%=ressfirst.id%>+">";
+                                        var script_<%=ressfirst.id%> = "<script>function sub_<%=ressfirst.id%> (){document.location.href =\"../person/address.aspx?user_name=\"+$('#user-name').val()+\"&&user_phone=\" +$('#user-phone').val()+ \"&&sheng=\" + $('#sheng_top').text()+\"&&city=\"+$('#City_top').text()+ \"&&quyu=\"+$('#town_top').text()+ \"&&xiangxi=\" +$('#xiangxi_top').val()+\"&&id=<%=ressfirst.id%>\"; }</" + sc_<%=ressfirst.id%> + ">";
 
                                         layer.open({
                                             type: 1
@@ -74,8 +74,8 @@
        , btn: ['修改', '取消']
        , btnAlign: 'c'
        , moveType: 1 //拖拽模式，0或者1
-       , content: '<div style="padding: 30px; line-height: 22px;overflow-x:hidden; background-color: #fff; color: #393D49;height:290px;font-weight: 350;">姓名:</br><input id="user-name" type="text" style="width:40%" value="<%=ressfirst.name%>"/></br>联系方式:<input id="user-phone" type="text" style="width:100%" value="<%=ressfirst.telephone%>"/></br>地址:</br>  <div id="sjld_top" class="am-form-content address" style="width:600px;margin:0px;position:relative;z-index:100;left:0.8%"><div class="m_zlxg" id="shenfen_top" ><p id="sheng_top" title=""><%=ressfirst.Province%></p><div class="m_zlxg2"  ><ul style="overflow-y:scroll;overflow-x:hidden;height:110px" value="<%=ressfirst.Province%>"></ul></div></div><div class="m_zlxg" id="chengshi_top"> <p id="City_top" title=""></p><div class="m_zlxg2"><ul style="overflow-x:hidden;overflow-y:scroll;height:110px"></ul> </div></div><div class="m_zlxg" id="quyu_top"><p id="town_top" title=""></p><div class="m_zlxg2"> <ul style="overflow-x:hidden;overflow-y:scroll;height:110px"></ul></div> </div><input id="sfdq_num" type="hidden" value="" /><input id="csdq_num" type="hidden" value="" /><input id="sfdq_tj" type="hidden" value="" /><input id="csdq_tj" type="hidden" value="" /><input id="qydq_tj" type="hidden" value="" /></div></br></br>详细地址:</br><textarea id="xiangxi_top" type="text" style="width:100%"/>'+script_<%=ressfirst.id%>+'</div>'
-       , success: function(layero) {
+       , content: '<div style="padding: 30px; line-height: 22px;overflow-x:hidden; background-color: #fff; color: #393D49;height:290px;font-weight: 350;">姓名:</br><input id="user-name" type="text" style="width:40%" value="<%=ressfirst.name%>"/></br>联系方式:<input id="user-phone" type="text" style="width:100%" value="<%=ressfirst.telephone%>"/></br>地址:</br>  <div id="sjld_top" class="am-form-content address" style="width:600px;margin:0px;position:relative;z-index:100;left:0.8%"><div class="m_zlxg" id="shenfen_top" ><p id="sheng_top" title=""><%=ressfirst.Province%></p><div class="m_zlxg2"  ><ul style="overflow-y:scroll;overflow-x:hidden;height:110px" value="<%=ressfirst.Province%>"></ul></div></div><div class="m_zlxg" id="chengshi_top"> <p id="City_top" title=""></p><div class="m_zlxg2"><ul style="overflow-x:hidden;overflow-y:scroll;height:110px"></ul> </div></div><div class="m_zlxg" id="quyu_top"><p id="town_top" title=""></p><div class="m_zlxg2"> <ul style="overflow-x:hidden;overflow-y:scroll;height:110px"></ul></div> </div><input id="sfdq_num" type="hidden" value="" /><input id="csdq_num" type="hidden" value="" /><input id="sfdq_tj" type="hidden" value="" /><input id="csdq_tj" type="hidden" value="" /><input id="qydq_tj" type="hidden" value="" /></div></br></br>详细地址:</br><textarea id="xiangxi_top" type="text" style="width:100%"/>' + script_<%=ressfirst.id%> + '</div>'
+       , success: function (layero) {
 
            var btn = layero.find('.layui-layer-btn');
            btn.find('.layui-layer-btn0').attr({
@@ -89,38 +89,41 @@
                                         $('#City_top').text("<%=ressfirst.City%>");
                                         $('#xiangxi_top').text("<%=ressfirst.xiangxi%>");
                                         $('#town_top').text("<%=ressfirst.Township%>");
-
+                                    }
+                                       
+                                    </script>
                                         <% }%>
+                                        
+                                        <script>
+                                            $(document).ready(function () {
+                                                $(".new-option-r").click(function () {
+                                                    var Id = $(this).attr('id');
+                                                    $(this).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");
+
+                                                    $.post('/person/address_ajax', { "id": Id }, function (data) {
 
 
-                                        $(document).ready(function() {
-                                            $(".new-option-r").click(function () {
-                                                var Id = $(this).attr('id');
-                                                $(this).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");
+                                                    });
+                                                    //$.ajax({
+                                                    //    type: "POST",
+                                                    //    url: "address_ajax",
+                                                    //    data: { "id": Id},
+                                                    //    dataType: "JSON",
+                                                    //    success: function (data) {
 
-                                                $.post('/person/address_ajax', { "id": Id }, function (data) {
 
-
+                                                    //    }
+                                                    //});
                                                 });
-                                                //$.ajax({
-                                                //    type: "POST",
-                                                //    url: "address_ajax",
-                                                //    data: { "id": Id},
-                                                //    dataType: "JSON",
-                                                //    success: function (data) {
 
+                                                var $ww = $(window).width();
+                                                if ($ww > 640) {
+                                                    $("#doc-modal-1").removeClass("am-modal am-modal-no-btn")
+                                                }
 
-                                                //    }
-                                                //});
-                                            });
+                                            })
 
-                                            var $ww = $(window).width();
-                                            if($ww>640) {
-                                                $("#doc-modal-1").removeClass("am-modal am-modal-no-btn")
-                                            }
-
-                                        })
-                                    }</script>
+                                    </script>
                            
                            
 
@@ -186,12 +189,13 @@
                                         $('#City_top1').text("<%=ress1.City%>");
                                         $('#xiangxi_top1').text("<%=ress1.xiangxi%>");
                                         $('#town_top1').text("<%=ress1.Township%>");
-
+                                    }
+                                        </script>
                                         <% }%>
 
 
 
-
+                            <script>
                                         $(document).ready(function () {
                                             $(".new-option-r").click(function () {
                                                 var Id = $(this).attr('id');
@@ -221,7 +225,7 @@
                                         })
 
 
-                                    }</script>
+                                    </script>
                            
 
                         </ul>
