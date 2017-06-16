@@ -94,7 +94,7 @@
 
                     <!--个人信息 -->
                     <div class="info-main">
-                        <form class="am-form am-form-horizontal">
+                        <div class="am-form am-form-horizontal">
 
                             <div class="am-form-group">
                                 <label for="user-name2" class="am-form-label">昵称</label>
@@ -233,7 +233,7 @@ else
             document.location.href = "../person/information.aspx?name1=" + $('#user-name1').val() + "&&name2=" + $('#user-name2').val() + "&&telephone=" + $('#user-phone').val() + "&&birthday=" + $('#txtBeginDate').val() + "&&sex=" + sex;
             })
 </script>
-                        </form>
+                        </div>
                     </div>
 
                 </div>
