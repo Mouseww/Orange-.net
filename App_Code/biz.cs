@@ -47,10 +47,7 @@ namespace Orange商城
             }
         }
 
-        public object Addaddress(string v1, string v2, string v3, string v4, string v5, string v6, string v7)
-        {
-            throw new NotImplementedException();
-        }
+    
 
         public IList<Commodity_1> bizSelectType2(int type1_id, string typename)
         {

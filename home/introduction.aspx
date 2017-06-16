@@ -374,7 +374,7 @@
         $('a#LikBuy').click(function () {
             if (attr_id1 != null && attr_id2 != null) {
                 var number = $('#text_box').val();
-                document.location.href = "../Introduction/Order?id=@ViewBag.Introduction.Id&&Commodity_id=@ViewBag.Introduction.Id&&op_type=@ViewBag.attribute[0].type_name&&op_type2=@ViewBag.attr[0].type_name&&attr=" + attr_name1 + "&&attr2=" + attr_name2 + "&&number=" + number + "&&img=@ViewBag.Introduction.img" + "&&Commodity_name=@ViewBag.Introduction.Name&&Price=" + $('.sys_item_price').text() + "&&Old_Price=" + $('.sys_item_mktprice').text();
+                document.location.href = "pay.aspx?id=<%=Introduction.Id%>&&Commodity_id=<%=Introduction.Id%>&&op_type=<%=attr_option1[0].type_name%>&&op_type2=<%=attr_option2[0].type_name%>&&attr=" + attr_name1 + "&&attr2=" + attr_name2 + "&&number=" + number + "&&img=<%=Introduction.img%>" + "&&Commodity_name=<%=Introduction.Name%>&&Price=" + $('.sys_item_price').text() + "&&Old_Price=" + $('.sys_item_mktprice').text();
             }
             else {
                 alert("请先选择商品属性");
