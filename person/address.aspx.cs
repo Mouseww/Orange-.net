@@ -19,40 +19,40 @@ public partial class person_address : System.Web.UI.Page
     {
         
           
-         user = (VMUser)Session["User"];
-        if (caozuo != null)
-        {
-            try
-            {
-                end = new biz().DelectAddress(caozuo);
-                if (end)
-                {
-                    Response.Write("<script>alert('操作成功')<script>");
-                }
-            }
-            catch { }
-        }
-        if (user_name != null)
-        {
-            if (id != null)
-            {
-               end = new biz().UpAddress(Request.QueryString["user_name"], Request.QueryString["user_phone"], Request.QueryString["sheng"], Request.QueryString["city"], Request.QueryString["quyu"], Request.QueryString["xiangxi"], Request.QueryString["id"]);
-                if (end)
-                {
-                    Response.Write("<script>alert('操作成功')<script>");
-                }
-            }
-            else
-            {
-               end = (bool)new biz().Addaddress(Request.QueryString["user_name"], Request.QueryString["user_phone"], Request.QueryString["sheng"], Request.QueryString["city"], Request.QueryString["quyu"], Request.QueryString["xiangxi"], Request.QueryString[user.ID]);
-                if (end)
-                {
-                    Response.Write("<script>alert('操作成功')<script>");
-                }
-            }
-        }
-             ress = new biz().SelectRess(user.ID);
-             ress = ress;
+        // user = (VMUser)Session["User"];
+        //if (caozuo != null)
+        //{
+        //    try
+        //    {
+        //        end = new biz().DelectAddress(caozuo);
+        //        if (end)
+        //        {
+        //            Response.Write("<script>alert('操作成功')<script>");
+        //        }
+        //    }
+        //    catch { }
+        //}
+        //if (user_name != null)
+        //{
+        //    if (id != null)
+        //    {
+        //       end = new biz().UpAddress(Request.QueryString["user_name"], Request.QueryString["user_phone"], Request.QueryString["sheng"], Request.QueryString["city"], Request.QueryString["quyu"], Request.QueryString["xiangxi"], Request.QueryString["id"]);
+        //        if (end)
+        //        {
+        //            Response.Write("<script>alert('操作成功')<script>");
+        //        }
+        //    }
+        //    else
+        //    {
+        //       end = (bool)new biz().Addaddress(Request.QueryString["user_name"], Request.QueryString["user_phone"], Request.QueryString["sheng"], Request.QueryString["city"], Request.QueryString["quyu"], Request.QueryString["xiangxi"], Request.QueryString[user.ID]);
+        //        if (end)
+        //        {
+        //            Response.Write("<script>alert('操作成功')<script>");
+        //        }
+        //    }
+        //}
+        //     ress = new biz().SelectRess(user.ID);
+        //     ress = ress;
        
     }
 }

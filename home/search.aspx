@@ -113,7 +113,7 @@
 								<ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
 									   <% foreach(var Soure1 in Soure) { %>
                                 <li>
-                                <div class="i-pic limit"><a href="../Introduction/Index?id=<%=Soure1.id %>">
+                                <div class="i-pic limit"><a href="../home/introduction.aspx?id=<%=Soure1.id %>">
                                     <img src="../images/<%=Soure1.img%>" style="width:100%;height:194.33px"/>
                                     <p class="title fl"><%=Soure1.Name %></p>
                                     <p class="price fl">
