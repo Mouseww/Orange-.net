@@ -154,7 +154,7 @@
                            
                                 <script type="text/javascript">
                                 function delClick_<%=ress1.id%> () {
-                                    document.location.href="../person/address1.aspx?caozuo=<%=ress1.id%>"
+                                    document.location.href="../person/address.aspx?caozuo=<%=ress1.id%>"
                                 }
                                 var sc_<%=ress1.id%> = "script";
 
