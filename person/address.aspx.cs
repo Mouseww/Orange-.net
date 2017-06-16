@@ -10,16 +10,22 @@ using System.Web.UI.WebControls;
 public partial class person_address : System.Web.UI.Page
 {
     public VMUser user = new VMUser();
-    string caozuo, user_name,id;
+    public string caozuo,msg;
     public bool end = new bool();
     public List<Resses> ress = new List<Resses>();
   
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
-          
-         user = (VMUser)Session["User"];
+        string caozuo = Request.QueryString["caozuo"];
+        string user_name = Request.QueryString["user_name"];
+        string user_phone = Request.QueryString["user_phone"];
+        string sheng = Request.QueryString["sheng"];
+        string city = Request.QueryString["city"];
+        string quyu = Request.QueryString["quyu"];
+        string xiangxi = Request.QueryString["xiangxi"];
+        string id = Request.QueryString["id"];
+        user = (VMUser)Session["User"];
         if (caozuo != null)
         {
             try
@@ -27,7 +33,7 @@ public partial class person_address : System.Web.UI.Page
                 end = new biz().DelectAddress(caozuo);
                 if (end)
                 {
-                    Response.Write("<script>alert('操作成功')<script>");
+                    msg = "操作成功";
                 }
             }
             catch { }
@@ -36,23 +42,23 @@ public partial class person_address : System.Web.UI.Page
         {
             if (id != null)
             {
-               end = new biz().UpAddress(Request.QueryString["user_name"], Request.QueryString["user_phone"], Request.QueryString["sheng"], Request.QueryString["city"], Request.QueryString["quyu"], Request.QueryString["xiangxi"], Request.QueryString["id"]);
+               end = new biz().UpAddress(user_name, user_phone, sheng, city, quyu, xiangxi, id);
                 if (end)
                 {
-                    Response.Write("<script>alert('操作成功')<script>");
+                    msg = "操作成功";
                 }
             }
             else
             {
-               end = (bool)new biz().Addaddress(Request.QueryString["user_name"], Request.QueryString["user_phone"], Request.QueryString["sheng"], Request.QueryString["city"], Request.QueryString["quyu"], Request.QueryString["xiangxi"], Request.QueryString[user.ID]);
+               end = new biz().Addaddress(user_name, user_phone, sheng, city, quyu, xiangxi, user.ID);
                 if (end)
                 {
-                    Response.Write("<script>alert('操作成功')<script>");
+                    msg = "操作成功";
                 }
             }
         }
              ress = new biz().SelectRess(user.ID);
-             ress = ress;
+            
        
     }
 }
