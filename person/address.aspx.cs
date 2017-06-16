@@ -56,6 +56,7 @@ public partial class person_address : System.Web.UI.Page
                     msg = "操作成功";
                 }
             }
+            Response.Redirect("../person/address.aspx");
         }
              ress = new biz().SelectRess(user.ID);
             
