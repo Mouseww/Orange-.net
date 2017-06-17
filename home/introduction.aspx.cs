@@ -12,26 +12,34 @@ public partial class home_introduction : System.Web.UI.Page
     public Commodities Introduction = new Commodities();
     public List<Commodity_option1> attr_option1 = new List<Commodity_option1>();
     public List<Commodity_option2> attr_option2 = new List<Commodity_option2>();
-    
+    public string msg;
     public VMUser user=new VMUser();
     
     protected void Page_Load(object sender, EventArgs e)
     {
         
         user = (VMUser)Session["User"];
-       
-        try { int id = int.Parse(Request.QueryString["id"]);
-            Introduction = new biz().GetCommodityTD1(id);
 
-            attr_option1 = new biz().show_option1(id);
-
-            attr_option2 = new biz().show_option2(id);
+        int id = 0;
+        try { id = int.Parse(Request.QueryString["id"]);
+          
+           
         }
         catch {
-         
+            id = int.Parse(Request.Form["id"]);
         }
-       
 
+
+        Introduction = new biz().GetCommodityTD1(id);
+
+        attr_option1 = new biz().show_option1(id);
+
+        attr_option2 = new biz().show_option2(id);
+        if ("add_shopcar" == Request.Form["type"])
+        {
+
+            msg = add_shopcar();
+        }
 
 
 

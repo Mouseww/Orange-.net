@@ -19,6 +19,7 @@ public partial class home_MasterPage : System.Web.UI.MasterPage
         {
             res = new biz().shopcart_number(user);
         }
+      
      
 
     }

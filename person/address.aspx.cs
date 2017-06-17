@@ -25,7 +25,17 @@ public partial class person_address : System.Web.UI.Page
         string quyu = Request.QueryString["quyu"];
         string xiangxi = Request.QueryString["xiangxi"];
         string id = Request.QueryString["id"];
-        user = (VMUser)Session["User"];
+        try
+        { user = (VMUser)Session["User"];
+            if (user == null)
+            {
+                Response.Redirect("../home/Login.aspx");
+            }
+        }
+        catch
+        {
+            Response.Redirect("../home/Login.aspx");
+        }
         if (caozuo != null)
         {
             try

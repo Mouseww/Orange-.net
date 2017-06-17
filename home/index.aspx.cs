@@ -24,6 +24,12 @@ public partial class home_index : System.Web.UI.Page
     public Commodity_1 Commm2 = new Commodity_1();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Request.QueryString["?remove_user"] == "1")
+        {
+            Session["User"] = null;
+            Response.Redirect("../home/index.aspx");
+
+        }
         Carousel = new biz().GETIMG("Carousel");///轮播图片
         Recommend = new biz().GETIMG("Recommend");//推荐子项
         Recommends = new biz().GETIMG("Recommends");
@@ -55,7 +61,7 @@ public partial class home_index : System.Web.UI.Page
          Commm2 = new biz().GetCommodityTD(7);
       
         Commm = Details5(Commm2);//
-        Commm = Commm;
+        
 
 
   
