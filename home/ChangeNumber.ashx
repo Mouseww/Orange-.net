@@ -7,7 +7,7 @@ public class ChangeNumber : IHttpHandler {
 
     public void ProcessRequest (HttpContext context) {
         context.Response.ContentType = "text/plain";
-        var numbers = context.Request.Form["number"];
+       var numbers = context.Request.Form["number"];
         var Id = context.Request.Form["id"];
         var num = new biz().UpNumber(int.Parse(numbers),int.Parse(Id));
         context.Response.Write(num);
