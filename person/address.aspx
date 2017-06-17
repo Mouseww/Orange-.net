@@ -100,7 +100,7 @@
                                                     var Id = $(this).attr('id');
                                                     $(this).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");
 
-                                                    $.post('/person/address_ajax', { "id": Id }, function (data) {
+                                                    $.post('/person/address.ashx', { "id": Id }, function (data) {
 
 
                                                     });
@@ -154,11 +154,11 @@
                            
                                 <script type="text/javascript">
                                 function delClick_<%=ress1.id%> () {
-                                    document.location.href="../person/address1.aspx?caozuo=<%=ress1.id%>"
+                                    document.location.href="../person/address.aspx?caozuo=<%=ress1.id%>"
                                 }
                                 var sc_<%=ress1.id%> = "script";
 
-                                var script_<%=ress1.id%>="<script>function sub_<%=ress1.id%> (){document.location.href =\"../person/address1.aspx?user_name=\"+$('#user-name1').val()+\"&&user_phone=\" +$('#user-phone1').val()+ \"&&sheng=\" + $('#sheng_top1').text()+\"&&city=\"+$('#City_top1').text()+ \"&&quyu=\"+$('#town_top1').text()+ \"&&xiangxi=\" +$('#xiangxi_top1').val()+\"&&id=<%=ress1.id%>\"; }</"+sc_<%=ress1.id%>+">";
+                                var script_<%=ress1.id%>="<script>function sub_<%=ress1.id%> (){document.location.href =\"../person/address.aspx?user_name=\"+$('#user-name1').val()+\"&&user_phone=\" +$('#user-phone1').val()+ \"&&sheng=\" + $('#sheng_top1').text()+\"&&city=\"+$('#City_top1').text()+ \"&&quyu=\"+$('#town_top1').text()+ \"&&xiangxi=\" +$('#xiangxi_top1').val()+\"&&id=<%=ress1.id%>\"; }</"+sc_<%=ress1.id%>+">";
 
                                     function upclick<%=ress1.id%>() {
                                         layer.open({
@@ -201,7 +201,7 @@
                                                 var Id = $(this).attr('id');
                                                 $(this).parent('.user-addresslist').addClass("defaultAddr").siblings().removeClass("defaultAddr");
 
-                                                $.post('/person/address_ajax', { "id": Id }, function (data) {
+                                                $.post('/person/address.ashx', { "id": Id }, function (data) {
 
 
                                                 });

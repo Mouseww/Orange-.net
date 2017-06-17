@@ -299,10 +299,12 @@ namespace Orange商城
             }
             catch { }
 
-
-            var ress1 = db.Resses.First(b => b.id == id);
-            ress1.moren = "1";
-            db.SubmitChanges();
+            try {
+                var ress1 = db.Resses.First(b => b.id == id);
+                ress1.moren = "1";
+                db.SubmitChanges();
+            }
+            catch { }
             return true;
 
 
