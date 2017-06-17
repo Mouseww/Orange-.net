@@ -17,14 +17,12 @@
     
    
       <!--日期插件的引用-->
-    <% if (flag != null)
-
-    {%>
+ 
          <%if (flag)
         {%>
     <script>alert('修改成功')</script><% }
 
-    }%>
+    %>
 
 
 

@@ -61,7 +61,7 @@ public partial class home_index : System.Web.UI.Page
          Commm2 = new biz().GetCommodityTD(7);
       
         Commm = Details5(Commm2);//
-        Commm = Commm;
+        
 
 
   
