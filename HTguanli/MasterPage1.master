@@ -1,0 +1,120 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage1.master.cs" Inherits="HTguanli_MasterPage1" %>
+
+<!DOCTYPE html>
+
+<html >
+<head >
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+        <title>后台管理系统</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/jquery.js"></script>
+<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+
+	(function($){
+		$(window).load(function(){
+			
+			$("a[rel='load-content']").click(function(e){
+				e.preventDefault();
+				var url=$(this).attr("href");
+				$.get(url,function(data){
+					$(".content .mCSB_container").append(data); //load new content inside .mCSB_container
+					//scroll-to appended content 
+					$(".content").mCustomScrollbar("scrollTo","h2:last");
+				});
+			});
+			
+			$(".content").delegate("a[href='top']","click",function(e){
+				e.preventDefault();
+				$(".content").mCustomScrollbar("scrollTo",$(this).attr("href"));
+			});
+			
+		});
+	})(jQuery);
+</script>
+
+
+</head>
+<body>
+
+
+    <!--header-->
+<header>
+ <h1><img src="images/admin_logo.png"/></h1>
+ <ul class="rt_nav">
+  <li><a href="http://www.mycodes.net" target="_blank" class="website_icon">站点首页</a></li>
+  <li><a href="#" class="clear_icon">清除缓存</a></li>
+  <li><a href="#" class="admin_icon">DeathGhost</a></li>
+  <li><a href="#" class="set_icon">账号设置</a></li>
+  <li><a href="login.aspx" class="quit_icon">安全退出</a></li>
+ </ul>
+</header>
+<!--aside nav-->
+<!--aside nav-->
+<aside class="lt_aside_nav content mCustomScrollbar">
+ <h2><a href="index.aspx">起始页</a></h2>
+ <ul>
+  <li>
+   <dl>
+    <dt>常用布局示例</dt>
+    <!--当前链接则添加class:active-->
+    <dd><a href="product_list.aspx" class="active">商品列表示例</a></dd>
+    <dd><a href="product_detail.aspx">商品详情示例</a></dd>
+    <dd><a href="recycle_bin.aspx">商品回收站示例</a></dd>
+   </dl>
+  </li>
+  <li>
+   <dl>
+    <dt>订单信息</dt>
+    <dd><a href="order_list.aspx">订单列表示例</a></dd>
+    <dd><a href="order_detail.aspx">订单详情示例</a></dd>
+   </dl>
+  </li>
+  <li>
+   <dl>
+    <dt>会员管理</dt>
+    <dd><a href="user_list.aspx">会员列表示例</a></dd>
+    <dd><a href="user_detail.aspx">添加会员（详情）示例</a></dd>
+    <dd><a href="user_rank.aspx">会员等级示例</a></dd>
+    <dd><a href="adjust_funding.aspx">会员资金管理示例</a></dd>
+   </dl>
+  </li>
+  <li>
+   <dl>
+    <dt>基础设置</dt>
+    <dd><a href="setting.aspx">站点基础设置示例</a></dd>
+   </dl>
+  </li>
+  <li>
+   <dl>
+    <dt>配送与支付设置</dt>
+    <dd><a href="express_list.aspx">配送方式</a></dd>
+    <dd><a href="pay_list.aspx">支付方式</a></dd>
+   </dl>
+  </li>
+  <li>
+   <dl>
+    <dt>在线统计</dt>
+    <dd><a href="discharge_statistic.aspx">流量统计</a></dd>
+    <dd><a href="sales_volume.aspx">销售额统计</a></dd>
+   </dl>
+  </li>
+  <li>
+   <p class="btm_infor">© DeathGhost.cn 版权所有</p>
+  </li>
+ </ul>
+</aside>
+
+
+
+
+ <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
