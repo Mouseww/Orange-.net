@@ -18,6 +18,12 @@ public partial class MasterPage1 : System.Web.UI.MasterPage
         {
             res = new biz().shopcart_number(user);
         }
-
+        else
+        {
+            
+            
+                Response.Redirect("../home/Login.aspx");
+            
+        }
     }
 }

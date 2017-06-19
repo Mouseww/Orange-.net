@@ -68,6 +68,9 @@ public partial class LinqDataContext : System.Data.Linq.DataContext
   partial void InsertOrders(Orders instance);
   partial void UpdateOrders(Orders instance);
   partial void DeleteOrders(Orders instance);
+  partial void InsertHTUsers(HTUsers instance);
+  partial void UpdateHTUsers(HTUsers instance);
+  partial void DeleteHTUsers(HTUsers instance);
   #endregion
 	
 	public LinqDataContext() : 
@@ -201,6 +204,14 @@ public partial class LinqDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<Orders>();
+		}
+	}
+	
+	public System.Data.Linq.Table<HTUsers> HTUsers
+	{
+		get
+		{
+			return this.GetTable<HTUsers>();
 		}
 	}
 }
@@ -4093,6 +4104,116 @@ public partial class Orders : INotifyPropertyChanging, INotifyPropertyChanged
 					this._user_id = default(int);
 				}
 				this.SendPropertyChanged("Users");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.HTUsers")]
+public partial class HTUsers : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private string _username;
+	
+	private string _password;
+	
+    #region 可扩展性方法定义
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnusernameChanging(string value);
+    partial void OnusernameChanged();
+    partial void OnpasswordChanging(string value);
+    partial void OnpasswordChanged();
+    #endregion
+	
+	public HTUsers()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="NVarChar(MAX)")]
+	public string username
+	{
+		get
+		{
+			return this._username;
+		}
+		set
+		{
+			if ((this._username != value))
+			{
+				this.OnusernameChanging(value);
+				this.SendPropertyChanging();
+				this._username = value;
+				this.SendPropertyChanged("username");
+				this.OnusernameChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="NVarChar(MAX)")]
+	public string password
+	{
+		get
+		{
+			return this._password;
+		}
+		set
+		{
+			if ((this._password != value))
+			{
+				this.OnpasswordChanging(value);
+				this.SendPropertyChanging();
+				this._password = value;
+				this.SendPropertyChanged("password");
+				this.OnpasswordChanged();
 			}
 		}
 	}

@@ -9,6 +9,10 @@ public partial class HTguanli_MasterPage1 : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        var user = Session["HTUser"];
+        if (user == null)
+        {
+            Response.Redirect("login.aspx");
+        }
     }
 }

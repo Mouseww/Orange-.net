@@ -11,6 +11,10 @@ namespace Orange商城
         LinqDataContext db = new LinqDataContext();
 
 
+        public HTUsers HTLogin(string username,string password)
+        {
+            return db.HTUsers.First(a => a.username == username && a.password == password);
+        }
         /// <summary>
         /// 获取商品类型=
         /// </summary>

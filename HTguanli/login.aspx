@@ -25,9 +25,19 @@ $(document).ready(function() {
   //验证码
   createCode();
   //测试提交，对接程序删除即可
-  $(".submit_btn").click(function(){
-	  location.href="index.aspx";
-	  });
+  $(".submit_btn").click(function () {
+     if( validate()){
+      if ($('#user').val() == "" || $('#pwd').val()=="") {
+          alert('账号和密码不能为空')
+      } else { location.href = "login.aspx?user=" + $('#user').val() + "&&pwd=" + $('#pwd').val(); }
+	  
+     }
+     else {
+         alert('验证码输入错误')
+     }
+  }
+      );
+
 });
 </script>
 
@@ -40,10 +50,10 @@ $(document).ready(function() {
   <em>Management System</em>
  </dt>
  <dd class="user_icon">
-  <input type="text" placeholder="账号" class="login_txtbx"/>
+  <input type="text" id="user" placeholder="账号" class="login_txtbx"/>
  </dd>
  <dd class="pwd_icon">
-  <input type="password" placeholder="密码" class="login_txtbx"/>
+  <input type="password" id="pwd" placeholder="密码" class="login_txtbx"/>
  </dd>
  <dd class="val_icon">
   <div class="checkcode">

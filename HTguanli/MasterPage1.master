@@ -57,7 +57,7 @@
  <ul>
   <li>
    <dl>
-    <dt>常用布局示例</dt>
+    <dt>商品管理</dt>
     <!--当前链接则添加class:active-->
     <dd><a href="product_detail.aspx" class="active">商品列表</a></dd>
     <dd><a href="product_list.aspx">商品添加</a></dd>
@@ -66,7 +66,7 @@
   </li>
   <li>
    <dl>
-    <dt>订单信息</dt>
+    <dt>订单管理</dt>
     <dd><a href="order_list.aspx">订单列表</a></dd>
     <dd><a href="order_detail.aspx">订单详情示例</a></dd>
    </dl>

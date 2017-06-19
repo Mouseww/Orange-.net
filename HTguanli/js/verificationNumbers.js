@@ -30,13 +30,13 @@ function validate () {
       return false;
     }
     else if(inputCode != codeToUp ){
-      document.getElementById("J_codetext").value="";
+      document.getElementById("J_codetext").val("");
       document.getElementById("J_codetext").setAttribute("placeholder","验证码错误");
       createCode();
       return false;
     }
     else {
-      window.open(document.getElementById("J_down").getAttribute("data-link"));
+      //window.open(document.getElementById("J_down").getAttribute("data-link"));
       document.getElementById("J_codetext").value="";
       createCode();
       return true;
