@@ -56,9 +56,9 @@
       <Column Name="Commodity_option2_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Price_old" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="Time" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="Commodity_attribute_Orders" Member="Orders" ThisKey="Id" OtherKey="Commodity_Id" Type="Orders" />
       <Association Name="Commodity_attribute_Shopcarts" Member="Shopcarts" ThisKey="Id" OtherKey="Commodity_Id" Type="Shopcarts" />
       <Association Name="Commodity_attribute_Shopcarts1" Member="Shopcarts1" ThisKey="Id" OtherKey="Commodity_Id" Type="Shopcarts" />
+      <Association Name="Commodity_attribute_Orders" Member="Orders" ThisKey="Id" OtherKey="Commodity_Id" Type="Orders" />
       <Association Name="Commodity_option1_Commodity_attribute" Member="Commodity_option1" ThisKey="Commodity_option1_Id" OtherKey="Id" Type="Commodity_option1" IsForeignKey="true" />
       <Association Name="Commodity_option2_Commodity_attribute" Member="Commodity_option2" ThisKey="Commodity_option2_Id" OtherKey="Id" Type="Commodity_option2" IsForeignKey="true" />
       <Association Name="Commodities_Commodity_attribute" Member="Commodities" ThisKey="Commodity_Id" OtherKey="Id" Type="Commodities" IsForeignKey="true" />
@@ -107,22 +107,6 @@
       <Column Name="Commodity_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Orders" Member="Orders">
-    <Type Name="Orders">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Commodity_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="BuyNum" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="sendAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="ManName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Manphone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Post" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Time" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="State" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="Commodity_attribute_Orders" Member="Commodity_attribute" ThisKey="Commodity_Id" OtherKey="Id" Type="Commodity_attribute" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="Users_Orders" Member="Users" ThisKey="user_id" OtherKey="ID" Type="Users" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Resses" Member="Resses">
     <Type Name="Resses">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -143,8 +127,8 @@
       <Column Name="username" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="User_IN_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Users_Orders" Member="Orders" ThisKey="ID" OtherKey="user_id" Type="Orders" />
       <Association Name="Users_Resses" Member="Resses" ThisKey="ID" OtherKey="User_ID" Type="Resses" />
+      <Association Name="Users_Orders" Member="Orders" ThisKey="ID" OtherKey="user_id" Type="Orders" />
       <Association Name="User_IN_Users" Member="User_IN" ThisKey="User_IN_ID" OtherKey="ID" Type="User_IN" IsForeignKey="true" />
       <Association Name="User_IN_Users1" Member="User_IN1" ThisKey="User_IN_ID" OtherKey="ID" Type="User_IN" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
@@ -176,6 +160,22 @@
       <Association Name="Commodity_option2_Shopcarts" Member="Commodity_option2" ThisKey="Commodity_option2_Id" OtherKey="Id" Type="Commodity_option2" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Commodity_attribute_Shopcarts" Member="Commodity_attribute" ThisKey="Commodity_Id" OtherKey="Id" Type="Commodity_attribute" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Commodity_attribute_Shopcarts1" Member="Commodity_attribute1" ThisKey="Commodity_Id" OtherKey="Id" Type="Commodity_attribute" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Orders" Member="Orders">
+    <Type Name="Orders">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Commodity_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BuyNum" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="sendAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ManName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Manphone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Time" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Price" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Commodity_attribute_Orders" Member="Commodity_attribute" ThisKey="Commodity_Id" OtherKey="Id" Type="Commodity_attribute" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Users_Orders" Member="Users" ThisKey="user_id" OtherKey="ID" Type="Users" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>

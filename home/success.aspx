@@ -15,9 +15,9 @@
 
 <div class="take-delivery">
  <div class="status">
-   <h2>您已成功付款</h2>
+   <h2><%=msg %></h2>
    <div class="successInfo">
-     <ul>
+     <%--<ul>
        <li>付款金额<em>¥9.90</em></li>
        <div class="user-info">
          <p>收货人：艾迪</p>
@@ -31,7 +31,7 @@
        <span class="info">您可以</span>
         <a href="../person/order.html" class="J_MakePoint">查看<span>已买到的宝贝</span></a>
         <a href="../person/orderinfo.html" class="J_MakePoint">查看<span>交易详情</span></a>
-     </div>
+     </div>--%>
     </div>
   </div>
 </div>

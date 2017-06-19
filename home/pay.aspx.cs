@@ -12,6 +12,8 @@ public partial class home_pay : System.Web.UI.Page
     public ShopCars Commodity = new ShopCars();
     public List<Resses> ress = new List<Resses>();
     public VMUser user=new VMUser();
+    public string id;
+    public int opt1_id, opt2_id;
     protected void Page_Load(object sender, EventArgs e)
     {
         try
@@ -47,9 +49,11 @@ public partial class home_pay : System.Web.UI.Page
 
             try
         {
-            string id = Request.QueryString["id"];
+             id = Request.QueryString["id"];
             string Commodity_id = Request.QueryString["Commodity_id"];
-                string op_type = Request.QueryString["op_type"];
+            opt1_id = int.Parse(Request.QueryString["attr_id"]);
+            opt2_id = int.Parse(Request.QueryString["attr2_id"]);
+            string op_type = Request.QueryString["op_type"];
             string op_type2 = Request.QueryString["op_type2"];
             string attr = Request.QueryString["attr"];
             string attr2 = Request.QueryString["attr2"];

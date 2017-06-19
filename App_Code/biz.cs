@@ -10,6 +10,7 @@ namespace Orange商城
     {
         LinqDataContext db = new LinqDataContext();
 
+
         /// <summary>
         /// 获取商品类型=
         /// </summary>
@@ -717,6 +718,48 @@ namespace Orange商城
             var price = db.Commodity_attribute.Where(a => a.Commodity_option1.Id == attr_option1 && a.Commodity_option2.Id == attr_option2).ToList();
 
             return price;
+        }
+        /// <summary>
+        /// 获取商品属性表id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="option1"></param>
+        /// <param name="option2"></param>
+        /// <returns></returns>
+        public int SelectCommodity_attr_id(int id,int option1,int option2)
+        {
+
+            return db.Commodity_attribute.First(a => a.Commodity_option1_Id == option1 && a.Commodity_option2_Id == option2 && a.Commodity_Id == id).Id;
+        }
+        /// <summary>
+        /// 添加订单
+        /// </summary>
+        /// <param name="Commodity_attr_id"></param>
+        /// <param name="user_id"></param>
+        /// <param name="buynum"></param>
+        /// <param name="name"></param>
+        /// <param name="phone"></param>
+        /// <param name="sheng"></param>
+        /// <param name="city"></param>
+        /// <param name="quyu"></param>
+        /// <param name="xiangxi"></param>
+        /// <param name="Price"></param>
+        /// <returns></returns>
+        public bool insertOrder(int Commodity_attr_id,int user_id,int buynum, string name, string phone, string sheng, string city, string quyu, string xiangxi, string Price)
+        { 
+            var order = new Orders();
+            order.Commodity_Id = Commodity_attr_id;
+            order.BuyNum = buynum;
+            order.user_id = user_id;
+            order.ManName = name;
+            order.Manphone = phone;
+            order.Price = Price;
+            order.sendAddress = sheng + "省" + city + "市" + quyu + "区" + xiangxi;
+            order.Time = DateTime.Now.ToString();
+            order.State = "待付款";
+            db.Orders.InsertOnSubmit(order);
+           db.SubmitChanges();
+            return true;
         }
     }
 }

@@ -311,10 +311,10 @@
                                          .eq(5).text();
                                     $('#xiangxi').text(xiangxi);
                                 })
-                                $(function sub(){
-                                    var ress_id = $('.user-addresslist defaultAddr').attr('id');
+                                function sub(){
+                                    document.location.href="../home/success.aspx?id=<%=id%>&&option1=<%=opt1_id%>&&option2=<%=opt2_id%>&&buynum="+$('#text_box').val()+"&&sheng="+$('#sheng').text()+"&&city="+$('#city').text()+"&quyu="+$('#quyu').text()+"&&xiangxi="+$('#xiangxi').text()+"&&name="+$('#name').text()+"&&phone="+$('#phone').text()+"&&Price="+$('#J_ActualFee').text()
 
-                                })
+                                }
                                 $(function(){
                                     $("#province").ProvinceCity()});
                             </script>

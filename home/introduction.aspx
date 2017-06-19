@@ -295,7 +295,7 @@
 							</div>
 							<li>
 								<div class="clearfix tb-btn tb-btn-buy theme-login">
-									<a id="LikBuy" title="点此按钮到下一步确认购买信息" href="#">立即购买</a>
+									<a id="LikBuy" title="点此按钮到下一步确认购买信息" href="javascript:void(0)">立即购买</a>
 								</div>
 							</li>
 							<li>
@@ -376,7 +376,7 @@
         $('a#LikBuy').click(function () {
             if (attr_id1 != null && attr_id2 != null) {
                 var number = $('#text_box').val();
-                document.location.href = "pay.aspx?id=<%=Introduction.Id%>&&Commodity_id=<%=Introduction.Id%>&&op_type=<%=attr_option1[0].type_name%>&&op_type2=<%=attr_option2[0].type_name%>&&attr=" + attr_name1 + "&&attr2=" + attr_name2 + "&&number=" + number + "&&img=<%=Introduction.img%>" + "&&Commodity_name=<%=Introduction.Name%>&&Price=" + $('.sys_item_price').text() + "&&Old_Price=" + $('.sys_item_mktprice').text();
+                document.location.href = "pay.aspx?id=<%=Introduction.Id%>&&Commodity_id=<%=Introduction.Id%>&&op_type=<%=attr_option1[0].type_name%>&&op_type2=<%=attr_option2[0].type_name%>&&attr=" + attr_name1 + "&&attr2=" + attr_name2 + "&&number=" + number + "&&img=<%=Introduction.img%>" + "&&Commodity_name=<%=Introduction.Name%>&&Price=" + $('.sys_item_price').text() + "&&Old_Price=" + $('.sys_item_mktprice').text()+"&&attr_id="+attr_id1+"&&attr2_id="+attr_id2;
             }
             else {
                 alert("请先选择商品属性");
