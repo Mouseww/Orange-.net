@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <section class="rt_wrap content mCustomScrollbar">
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Height="188px" Width="100%" AllowPaging="True" AllowSorting="True" DataSourceID="SqlDataSource1">
+        <asp:GridView class="table" ID="GridView1" runat="server" AutoGenerateColumns="False" Height="188px" Width="100%" AllowPaging="True" AllowSorting="True" DataSourceID="SqlDataSource1">
             <Columns>
                 <asp:BoundField DataField="Name" HeaderText="商品名称" SortExpression="Name" />
                 <asp:BoundField DataField="option" HeaderText="选项一" SortExpression="option" />

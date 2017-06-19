@@ -15,7 +15,7 @@
     <asp:Label ID="Label1" runat="server" Text="商品名称"></asp:Label>
     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
     <asp:Button ID="Button1" runat="server" Text="查询" OnClick="Button1_Click" />
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" Height="125px" Width="100%" AllowPaging="True" AllowSorting="True">
+    <asp:GridView class="table" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" Height="125px" Width="100%" AllowPaging="True" AllowSorting="True">
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" Visible="False" />
             <asp:BoundField DataField="Name" HeaderText="商品名称" SortExpression="Name" >
