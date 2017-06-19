@@ -14,7 +14,7 @@
 <section class="rt_wrap content mCustomScrollbar">
     <asp:Label ID="Label1" runat="server" Text="商品名称"></asp:Label>
     <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-    <asp:Button ID="Button1" runat="server" Text="查询" />
+    <asp:Button ID="Button1" runat="server" Text="查询" OnClick="Button1_Click" />
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" Height="125px" Width="100%" AllowPaging="True" AllowSorting="True">
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" Visible="False" />
@@ -31,6 +31,7 @@
             <asp:CommandField ShowEditButton="True" HeaderText="操作" ShowDeleteButton="True" />
             <asp:BoundField DataField="img" HeaderText="img" SortExpression="img" Visible="False" />
             <asp:BoundField DataField="img_small" HeaderText="img_small" SortExpression="img_small" Visible="False" />
+            <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="product_detail1.aspx?Id={0}" DataTextFormatString="{0}" HeaderText="链接" Text="详情" />
         </Columns>
     </asp:GridView>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:aspnet_Orange_20170331015318ConnectionString %>" DeleteCommand="DELETE FROM [Commodities] WHERE [Id] = @original_Id" InsertCommand="INSERT INTO [Commodities] ([Name], [Number], [Price], [img], [ID_ID], [img_small], [jieshao], [Price_old], [Time]) VALUES (@Name, @Number, @Price, @img, @ID_ID, @img_small, @jieshao, @Price_old, @Time)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [Commodities]" UpdateCommand="UPDATE [Commodities] SET [Name] = @Name, [Number] = @Number, [Price] = @Price, [img] = @img, [ID_ID] = @ID_ID, [img_small] = @img_small, [jieshao] = @jieshao, [Price_old] = @Price_old, [Time] = @Time WHERE [Id] = @original_Id">
