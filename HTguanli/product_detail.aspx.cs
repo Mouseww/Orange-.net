@@ -21,7 +21,13 @@ public partial class HTguanli_product_detail : System.Web.UI.Page
         {
 
             con.Open();
-            string sql = "select *from Commodities where Name='" + a1+"'";
+            string sql;
+            if (a1 == "" && a1 == null)
+            {
+                sql = "select * from Commodities";
+            }
+            else { sql = "select *from Commodities where Name='" + a1 + "'"; }
+         
             SqlDataSource1.SelectCommand = sql;
 
         }

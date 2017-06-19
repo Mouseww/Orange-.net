@@ -3,7 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <section class="rt_wrap content mCustomScrollbar">
-        <asp:GridView class="table" ID="GridView1" runat="server" AutoGenerateColumns="False" Height="188px" Width="100%" AllowPaging="True" AllowSorting="True" DataSourceID="SqlDataSource1">
+        <div class="page_title">
+       <h2 class="fl">商品详情</h2>
+            <a class="fr top_rt_btn" href="product_detail.aspx">返回商品列表</a>
+            </div>
+              <asp:GridView class="table" ID="GridView1" runat="server" AutoGenerateColumns="False" Height="188px" Width="100%" AllowPaging="True" AllowSorting="True" DataSourceID="SqlDataSource1">
             <Columns>
                 <asp:BoundField DataField="Name" HeaderText="商品名称" SortExpression="Name" />
                 <asp:BoundField DataField="option" HeaderText="选项一" SortExpression="option" />
@@ -13,7 +17,6 @@
                 <asp:BoundField DataField="Number" HeaderText="库存量" SortExpression="Number" />
                 <asp:BoundField DataField="Time" HeaderText="添加时间" SortExpression="Time" />
                 <asp:CommandField HeaderText="操作" ShowDeleteButton="True" ShowEditButton="True" />
-                <asp:HyperLinkField DataNavigateUrlFields="Commodity_Id" DataNavigateUrlFormatString="product_detail.aspx?Id={0}" DataTextFormatString="{0}" HeaderText="链接" Text="返回" />
             </Columns>
         </asp:GridView>
 
@@ -48,7 +51,7 @@
                 <asp:Parameter Name="Id" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
-
+       
 
         
     </section>

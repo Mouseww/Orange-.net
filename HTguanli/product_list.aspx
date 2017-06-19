@@ -5,79 +5,209 @@
 
 
 
-
-<section class="rt_wrap content mCustomScrollbar">
+    <section class="rt_wrap content mCustomScrollbar">
  <div class="rt_content">
       <div class="page_title">
-       <h2 class="fl">商品列表示例</h2>
-       <a href="product_detail.html" class="fr top_rt_btn add_icon">添加商品</a>
+       <h2 class="fl">商品添加</h2>
+       <a class="fr top_rt_btn">返回产品列表</a>
       </div>
-      <section class="mtb">
-       <select class="select">
-        <option>下拉菜单</option>
-        <option>菜单1</option>
-       </select>
-       <input type="text" class="textbox textbox_225" placeholder="输入产品关键词或产品货号..."/>
-       <input type="button" value="查询" class="group_btn"/>
-      </section>
-      <table class="table">
-       <tr>
-        <th>缩略图</th>
-        <th>产品名称</th>
-        <th>货号</th>
-        <th>单价</th>
-        <th>单位</th>
-        <th>精品</th>
-        <th>新品</th>
-        <th>热销</th>
-        <th>库存</th>
-        <th>操作</th>
-       </tr>
-       <tr>
-        <td class="center"><img src="upload/goods01.jpg" width="50" height="50"/></td>
-        <td>这里是产品名称</td>
-        <td class="center">A15902</td>
-        <td class="center"><strong class="rmb_icon">59.00</strong></td>
-        <td class="center">包</td>
-        <td class="center"><a title="是" class="link_icon">&#89;</a></td>
-        <td class="center"><a title="否" class="link_icon">&#88;</a></td>
-        <td class="center"><a title="是" class="link_icon">&#89;</td>
-        <td class="center">5559</td>
-        <td class="center">
-         <a href="http://www.mycodes.net" title="预览" class="link_icon" target="_blank">&#118;</a>
-         <a href="product_detail.html" title="编辑" class="link_icon">&#101;</a>
-         <a href="#" title="删除" class="link_icon">&#100;</a>
-        </td>
-       </tr>
-       <tr>
-        <td class="center"><img src="upload/goods02.jpg" width="50" height="50"/></td>
-        <td>这里是产品名称</td>
-        <td class="center">A15902</td>
-        <td class="center"><strong class="rmb_icon">59.00</strong></td>
-        <td class="center">包</td>
-        <td class="center"><a title="是" class="link_icon">&#89;</a></td>
-        <td class="center"><a title="否" class="link_icon">&#88;</a></td>
-        <td class="center"><a title="是" class="link_icon">&#89;</a></td>
-        <td class="center">5559</td>
-        <td class="center">
-         <a href="http://www.mycodes.net" title="预览" class="link_icon" target="_blank">&#118;</a>
-         <a href="product_detail.html" title="编辑" class="link_icon">&#101;</a>
-         <a href="#" title="删除" class="link_icon">&#100;</a>
-        </td>
-       </tr>
-      </table>
-      <aside class="paging">
-       <a>第一页</a>
-       <a>1</a>
-       <a>2</a>
-       <a>3</a>
-       <a>…</a>
-       <a>1004</a>
-       <a>最后一页</a>
-      </aside>
+     <section>
+      <ul class="ulColumn2">
+       <li>
+        <span class="item_name" style="width:120px;">商品名称：</span>
+        <input type="text" class="textbox textbox_295" placeholder="商品名称..."/>
+        <span class="errorTips">错误提示信息...</span>
+       </li>
+       <li>
+        <span class="item_name" style="width:120px;">商品货号：</span>
+        <input type="text" class="textbox" placeholder="商品货号..."/>
+        <span class="errorTips">错误提示信息...</span>
+       </li>
+       <li>
+        <span class="item_name" style="width:120px;">品牌：</span>
+        <select class="select">
+         <option>选择品牌</option>
+        </select>
+        <span class="errorTips">错误提示信息...</span>
+       </li>
+       <li>
+        <span class="item_name" style="width:120px;">分类：</span>
+        <select class="select">
+         <option>选择产品分类</option>
+        </select>
+        <span class="errorTips">错误提示信息...</span>
+       </li>
+       <li>
+        <span class="item_name" style="width:120px;">推荐：</span>
+        <label class="single_selection"><input type="radio" name="name"/>是否精品</label>
+        <label class="single_selection"><input type="radio" name="name"/>是否热销</label>
+        <label class="single_selection"><input type="radio" name="name"/>是否新品</label>
+       </li>
+       <li>
+        <span class="item_name" style="width:120px;">上传图片：</span>
+        <label class="uploadImg">
+         <input type="file"/>
+         <span>上传图片</span>
+        </label>
+       </li>
+       <li>
+        <span class="item_name" style="width:120px;">产品详情：</span>
+        <script id="editor" type="text/plain" style="width:1024px;height:500px;margin-left:120px;margin-top:0;"></script>
+           <!--ueditor可删除下列信息-->
+           <div id="btns" style="margin-left:120px;margin-top:8px;">
+            <div>
+                <button onclick="getAllHtml()">获得整个html的内容</button>
+                <button onclick="getContent()">获得内容</button>
+                <button onclick="setContent()">写入内容</button>
+                <button onclick="setContent(true)">追加内容</button>
+                <button onclick="getContentTxt()">获得纯文本</button>
+                <button onclick="getPlainTxt()">获得带格式的纯文本</button>
+                <button onclick="hasContent()">判断是否有内容</button>
+                <button onclick="setFocus()">使编辑器获得焦点</button>
+                <button onmousedown="isFocus(event)">编辑器是否获得焦点</button>
+                <button onmousedown="setblur(event)" >编辑器失去焦点</button>
+        
+            </div>
+            <div>
+                <button onclick="getText()">获得当前选中的文本</button>
+                <button onclick="insertHtml()">插入给定的内容</button>
+                <button id="enable" onclick="setEnabled()">可以编辑</button>
+                <button onclick="setDisabled()">不可编辑</button>
+                <button onclick=" UE.getEditor('editor').setHide()">隐藏编辑器</button>
+                <button onclick=" UE.getEditor('editor').setShow()">显示编辑器</button>
+                <button onclick=" UE.getEditor('editor').setHeight(300)">设置高度为300默认关闭了自动长高</button>
+            </div>
+        
+            <div>
+                <button onclick="getLocalData()" >获取草稿箱内容</button>
+                <button onclick="clearLocalData()" >清空草稿箱</button>
+            </div>
+        
+        </div>
+       </li>
+       <li>
+        <span class="item_name" style="width:120px;"></span>
+        <input type="submit" class="link_btn"/>
+       </li>
+      </ul>
+     </section>
  </div>
 </section>
+<script src="js/ueditor.config.js"></script>
+<script src="js/ueditor.all.min.js"> </script>
+<script type="text/javascript">
 
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+
+
+    function isFocus(e){
+        alert(UE.getEditor('editor').isFocus());
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function setblur(e){
+        UE.getEditor('editor').blur();
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function insertHtml() {
+        var value = prompt('插入html代码', '');
+        UE.getEditor('editor').execCommand('insertHtml', value)
+    }
+    function createEditor() {
+        enableBtn();
+        UE.getEditor('editor');
+    }
+    function getAllHtml() {
+        alert(UE.getEditor('editor').getAllHtml())
+    }
+    function getContent() {
+        var arr = [];
+        arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getContent());
+        alert(arr.join("\n"));
+    }
+    function getPlainTxt() {
+        var arr = [];
+        arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getPlainTxt());
+        alert(arr.join('\n'))
+    }
+    function setContent(isAppendTo) {
+        var arr = [];
+        arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
+        UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
+        alert(arr.join("\n"));
+    }
+    function setDisabled() {
+        UE.getEditor('editor').setDisabled('fullscreen');
+        disableBtn("enable");
+    }
+
+    function setEnabled() {
+        UE.getEditor('editor').setEnabled();
+        enableBtn();
+    }
+
+    function getText() {
+        //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+        var range = UE.getEditor('editor').selection.getRange();
+        range.select();
+        var txt = UE.getEditor('editor').selection.getText();
+        alert(txt)
+    }
+
+    function getContentTxt() {
+        var arr = [];
+        arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+        arr.push("编辑器的纯文本内容为：");
+        arr.push(UE.getEditor('editor').getContentTxt());
+        alert(arr.join("\n"));
+    }
+    function hasContent() {
+        var arr = [];
+        arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+        arr.push("判断结果为：");
+        arr.push(UE.getEditor('editor').hasContents());
+        alert(arr.join("\n"));
+    }
+    function setFocus() {
+        UE.getEditor('editor').focus();
+    }
+    function deleteEditor() {
+        disableBtn();
+        UE.getEditor('editor').destroy();
+    }
+    function disableBtn(str) {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            if (btn.id == str) {
+                UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+            } else {
+                btn.setAttribute("disabled", "true");
+            }
+        }
+    }
+    function enableBtn() {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+        }
+    }
+
+    function getLocalData () {
+        alert(UE.getEditor('editor').execCommand( "getlocaldata" ));
+    }
+
+    function clearLocalData () {
+        UE.getEditor('editor').execCommand( "clearlocaldata" );
+        alert("已清空草稿箱")
+    }
+</script>
 
 </asp:Content>
 

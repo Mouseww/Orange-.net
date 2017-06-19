@@ -12,9 +12,13 @@
    
 
 <section class="rt_wrap content mCustomScrollbar">
+    <div class="page_title">
+       <h2 class="fl">商品列表</h2>
+       <a href="product_list.aspx" class="fr top_rt_btn add_icon">添加商品</a>
+      </div>
     <asp:Label ID="Label1" runat="server" Text="商品名称"></asp:Label>
-    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-    <asp:Button ID="Button1" runat="server" Text="查询" OnClick="Button1_Click" />
+    <asp:TextBox ID="TextBox1" class="textbox textbox_225" runat="server"></asp:TextBox>
+    <asp:Button ID="Button1" runat="server" class="group_btn" Text="查询" OnClick="Button1_Click" />
     <asp:GridView class="table" ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" Height="125px" Width="100%" AllowPaging="True" AllowSorting="True">
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" Visible="False" />
