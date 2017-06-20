@@ -22,7 +22,7 @@
             <asp:BoundField DataField="ID_1_ID" HeaderText="A类编号" SortExpression="ID_1_ID" >
             </asp:BoundField>
             <asp:CommandField HeaderText="操作" ShowEditButton="True" ShowDeleteButton="True" />
-            <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="setting3.aspx?id={0}" DataTextFormatString="{0}" HeaderText="链接" Text="详情" />
+            <asp:HyperLinkField DataNavigateUrlFields="Id,ID_1_ID" DataNavigateUrlFormatString="setting3.aspx?id={0}&amp;&amp;iid={1}" DataTextFormatString="{0},{1}" HeaderText="链接" Text="详情" />
         </Columns>
     </asp:GridView>
 

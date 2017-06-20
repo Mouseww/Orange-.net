@@ -11,23 +11,32 @@
       <section class="mtb">
        <select class="select">
         <option>订单状态</option>
+           <option>全部</option>
         <option>待付款</option>
         <option>待发货</option>
         <option>待评价</option>
        </select>
-       <input type="text" class="textbox textbox_225" placeholder="输入订单编号或收件人姓名/电话..."/>
-       <input type="button" value="查询" class="group_btn"/>
+          <script>
+              $('.select').change(function () {
+               location.href="order_list.aspx?zt="+$(this).val()
+              })
+          </script>
+       <asp:TextBox runat="server" ID="txt" type="text" class="textbox textbox_225" placeholder="输入收件人姓名"/>
+       <asp:Button  runat="server" type="button" Text="查询" ID="btn1" class="group_btn" OnClick="Unnamed1_Click"/>
       </section>
      <asp:GridView class="table" ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" Width="100%">
          <Columns>
              <asp:BoundField DataField="Id" HeaderText="订单编号" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
-             <asp:BoundField DataField="Commodity_Id" HeaderText="商品详细编号" SortExpression="Commodity_Id" ApplyFormatInEditMode="True" />
+             <asp:BoundField DataField="Commodity_Id" HeaderText="商品详细编号" SortExpression="Commodity_Id" ApplyFormatInEditMode="True" >
+             </asp:BoundField>
              <asp:BoundField DataField="user_id" HeaderText="用户编号" SortExpression="user_id" />
              <asp:BoundField DataField="BuyNum" HeaderText="购买数量" SortExpression="BuyNum" />
              <asp:BoundField DataField="Price" HeaderText="金额" SortExpression="Price" />
-             <asp:BoundField DataField="sendAddress" HeaderText="收货地址" SortExpression="sendAddress" />
+             <asp:BoundField DataField="sendAddress" HeaderText="收货地址" SortExpression="sendAddress" >
+             </asp:BoundField>
              <asp:BoundField DataField="ManName" HeaderText="收件人" SortExpression="ManName" />
-             <asp:BoundField DataField="Manphone" HeaderText="联系方式" SortExpression="Manphone" />
+             <asp:BoundField DataField="Manphone" HeaderText="联系方式" SortExpression="Manphone" >
+             </asp:BoundField>
              <asp:BoundField DataField="Time" HeaderText="订单时间" SortExpression="Time" />
              <asp:BoundField DataField="State" HeaderText="状态" SortExpression="State" />
              <asp:CommandField HeaderText="操作" ShowDeleteButton="True" ShowEditButton="True" />

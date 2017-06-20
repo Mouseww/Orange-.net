@@ -8,7 +8,7 @@
        <h2 class="fl">商品分类管理</h2>
           <div style="position:absolute;right:5%;top:2%">
           <asp:Button ID="Button2" runat="server" class="group_btn" Text="添加C类" OnClick="Button2_Click" />
-         <asp:Button ID="Button3" runat="server" class="group_btn" Text="返回顶级" OnClick="Button3_Click" />
+         <asp:Button ID="Button3" runat="server" class="group_btn" Text="返回上一级" OnClick="Button3_Click" />
     
                 </div>
           </div>

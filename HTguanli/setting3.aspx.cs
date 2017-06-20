@@ -9,9 +9,12 @@ using System.Web.UI.WebControls;
 
 public partial class HTguanli_setting : System.Web.UI.Page
 {
+    public string id;
+    public string iid;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        id = Request.QueryString["id"];
+        iid = Request.QueryString["iid"];
     }
 
     
@@ -19,15 +22,15 @@ public partial class HTguanli_setting : System.Web.UI.Page
 
     protected void Button2_Click(object sender, EventArgs e)
     {
-        new biz().addrowsC();
+        new biz().addrowsC(int.Parse(id));
         
-        Response.Redirect("setting3.aspx");
+        Response.Redirect("setting3.aspx?id="+id+"&&iid="+iid);
     }
 
 
 
     protected void Button3_Click(object sender, EventArgs e)
     {
-        Response.Redirect("setting.aspx");
+        Response.Redirect("setting2.aspx?id="+iid);
     }
 }

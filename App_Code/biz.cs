@@ -12,20 +12,20 @@ namespace Orange商城
         /// <summary>
         /// 在C类表插入一条未填写数据
         /// </summary>
-        public void addrowsC()
+        public void addrowsC(int id)
         {
             var a = new Commodity_2();
-            a.Name = "未命名";
+            a.ID_1_ID = id;
             db.Commodity_2.InsertOnSubmit(a);
             db.SubmitChanges();
         }
         /// <summary>
         /// 在B表插入一条未填写数据
         /// </summary>
-        public void addrowsB()
+        public void addrowsB(int id)
         {
             var a = new Commodity_1();
-            a.Name = "未命名";
+            a.ID_1_ID = id;
             db.Commodity_1.InsertOnSubmit(a);
             db.SubmitChanges();
         }

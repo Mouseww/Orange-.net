@@ -1,4 +1,4 @@
-/*
+﻿/*
 author:DeathGhost
 webSite:http://www.mycodes.net
 QQ:232650413
@@ -120,9 +120,9 @@ header .rt_nav li .quit_icon:before{content:"Q";}
 .lt_aside_nav .btm_infor{height:35px;line-height:35px;width:100%;background:#efefef;border-top:1px #b6b6b6 solid;text-align:center;color:#aaa;}
 /*public:rtContent*/
 .rt_wrap{margin-left:218px;margin-right:10px;height:100%;position:relative;
-    top: -5px;
+    top: 0px;
     left: 0px;
-    width: 594px;
+    width: 83%;
 }
 .rt_content{margin-bottom:80px;margin-right:8px;overflow:hidden;}
 .textWhite{color:white;}
