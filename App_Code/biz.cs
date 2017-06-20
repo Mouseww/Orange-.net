@@ -15,9 +15,9 @@ namespace Orange商城
         /// 获取商品类型=
         /// </summary>
         /// <returns></returns>
-        public IList<Commodity_type> bizGetCommodityCategory()
+        public IList<cc> bizGetCommodityCategory()
         {
-            var r = db.Commodity_type.Select(a => new Commodity_type()
+            var r = db.Commodity_type.Select(a => new cc()
             {
                 ID = a.ID,
                 Type_Name = a.Type_Name
@@ -50,9 +50,9 @@ namespace Orange商城
 
     
 
-        public IList<Commodity_1> bizSelectType2(int type1_id, string typename)
+        public IList<cc> bizSelectType2(int type1_id, string typename)
         {
-            var res1 = db.Commodity_1.Where(a => a.Commodity_type.ID == type1_id).Select(a => new Commodity_1
+            var res1 = db.Commodity_1.Where(a => a.Commodity_type.ID == type1_id).Select(a => new cc()
             {
                 ID = a.ID,
                 Name = a.Name
@@ -63,10 +63,10 @@ namespace Orange商城
             //}).ToList();
             return res1;
         }
-        public IList<Commodity_1> bizSelectType3(int type1_id, string typename2)
+        public IList<cc> bizSelectType3(int type1_id, string typename2)
         {
 
-            var res = db.Commodity_2.Where(b => b.Commodity_1.ID == type1_id).Select(b => new Commodity_1
+            var res = db.Commodity_2.Where(b => b.Commodity_1.ID == type1_id).Select(b => new cc()
             {
                 ID = b.ID,
                 Name = b.Name
