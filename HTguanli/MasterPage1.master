@@ -43,11 +43,9 @@
 <header>
  <h1><img src="images/admin_logo.png"/></h1>
  <ul class="rt_nav">
-  <li><a href="http://www.mycodes.net" target="_blank" class="website_icon">站点首页</a></li>
-  <li><a href="#" class="clear_icon">清除缓存</a></li>
-  <li><a href="#" class="admin_icon">DeathGhost</a></li>
-  <li><a href="#" class="set_icon">账号设置</a></li>
-  <li><a href="login.aspx" class="quit_icon">安全退出</a></li>
+  <li><a href="../home/index.aspx" target="_blank" class="website_icon">站点首页</a></li>
+ 
+  <li><a href="login.aspx?re=1" class="quit_icon">安全退出</a></li>
  </ul>
 </header>
 <!--aside nav-->
@@ -70,14 +68,14 @@
    <dl>
     <dt>订单管理</dt>
     <dd><a href="order_list.aspx">订单列表</a></dd>
-    <dd><a href="order_detail.aspx">订单详情示例</a></dd>
+ <%--   <dd><a href="order_detail.aspx">订单详情</a></dd>--%>
    </dl>
   </li>
 
   <li>
    <dl>
     <dt>会员管理</dt>
-    <dd><a href="user_list.aspx">会员列表示例</a></dd>
+    <dd><a href="user_list.aspx">会员列表</a></dd>
    
    </dl>
   </li>

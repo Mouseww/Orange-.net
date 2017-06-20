@@ -10,7 +10,11 @@ public partial class HTguanli_login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        if (Request.QueryString["re"] == "1")
+        {
+            Session["HTUser"] = null;
+        }
+
           string user=  Request.QueryString["user"];
             string pwd = Request.QueryString["pwd"];
         if (user != null && user != "") { 
