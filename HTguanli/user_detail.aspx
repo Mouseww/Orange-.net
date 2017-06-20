@@ -1,88 +1,54 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/HTguanli/MasterPage1.master" AutoEventWireup="true" CodeFile="user_detail.aspx.cs" Inherits="HTguanli_user_detail" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-
+    
     <section class="rt_wrap content mCustomScrollbar">
- <div class="rt_content">
-      <div class="page_title">
-       <h2 class="fl">会员详情</h2>
-       <a href="adjust_funding.html" class="fr top_rt_btn money_icon">资金管理</a>
-      </div>
-      <ul class="ulColumn2">
-       <li>
-        <span class="item_name" style="width:120px;">上传头像：</span>
-        <label class="uploadImg">
-         <input type="file"/>
-         <span>上传头像</span>
-        </label>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;">会员名称：</span>
-        <input type="text" class="textbox textbox_225" value="DeathGhost" placeholder="会员账号..."/>
-        <span class="errorTips">错误提示信息...</span>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;">登陆密码：</span>
-        <input type="password" class="textbox textbox_225" value="1830000000" placeholder="会员密码..."/>
-        <span class="errorTips">错误提示信息...</span>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;">会员等级：</span>
-        <select class="select">
-         <option>会员等级</option>
-         <option>普通会员</option>
-         <option>高级会员</option>
-        </select>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;">电子邮箱：</span>
-        <input type="email" class="textbox textbox_225" value="DeathGhost@sina.cn" placeholder="电子邮件地址..."/>
-        <span class="errorTips">错误提示信息...</span>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;">手机号码：</span>
-        <input type="tel" class="textbox textbox_225" value="18300000000" placeholder="手机号码..."/>
-        <span class="errorTips">错误提示信息...</span>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;">可用资金：</span>
-        <input type="text" class="textbox textbox_225" value="1599.00" placeholder="可用资金（单位：元）..." readonly/>
-        <span>元</span>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;">冻结资金：</span>
-        <input type="text" class="textbox textbox_225" value="100.00" placeholder="冻结资金（单位：元）..." readonly/>
-        <span>元</span>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;">收货地址：</span>
-        <select class="select">
-         <option>选择省份</option>
-         <option>陕西省</option>
-         <option>山西省</option>
-        </select>
-        <select class="select">
-         <option>选择城市</option>
-         <option>西安市</option>
-         <option>大同市</option>
-        </select>
-        <select class="select">
-         <option>选择区/县</option>
-         <option>长安县</option>
-         <option>不晓得</option>
-        </select>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;">详细地址：</span>
-        <input type="text" class="textbox textbox_295" value="陕西省西安市未央区凤城五路旺景国际大厦" placeholder="详细地址..."/>
-        <span class="errorTips">错误提示信息...</span>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;"></span>
-        <input type="submit" class="link_btn" value="更新/保存"/>
-       </li>
-      </ul>
- </div>
+        <asp:DataList ID="DataList1" class="table" runat="server" DataKeyField="ID" DataSourceID="SqlDataSource1">
+            <ItemTemplate>
+                姓名:
+                <asp:Label ID="nameLabel" runat="server" Text='<%# Eval("name") %>' />
+                <br />
+                昵称:
+                <asp:Label ID="nikenameLabel" runat="server" Text='<%# Eval("nikename") %>' />
+                <br />
+                联系方式:
+                <asp:Label ID="telephoneLabel" runat="server" Text='<%# Eval("telephone") %>' />
+                <br />
+                性别:
+                <asp:Label ID="sexLabel" runat="server" Text='<%# Eval("sex") %>' />
+                <br />
+                生日:
+                <asp:Label ID="birthdayLabel" runat="server" Text='<%# Eval("birthday") %>' />
+                <br />
+                <br />
+<br />
+            </ItemTemplate>
+        </asp:DataList>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:aspnet_Orange_20170331015318ConnectionString %>" DeleteCommand="DELETE FROM [User_IN] WHERE [ID] = @ID" InsertCommand="INSERT INTO [User_IN] ([name], [nikename], [telephone], [sex], [birthday], [username]) VALUES (@name, @nikename, @telephone, @sex, @birthday, @username)" SelectCommand="SELECT * FROM [User_IN] WHERE ([ID] = @ID)" UpdateCommand="UPDATE [User_IN] SET [name] = @name, [nikename] = @nikename, [telephone] = @telephone, [sex] = @sex, [birthday] = @birthday, [username] = @username WHERE [ID] = @ID">
+            <DeleteParameters>
+                <asp:Parameter Name="ID" Type="Int32" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="name" Type="String" />
+                <asp:Parameter Name="nikename" Type="String" />
+                <asp:Parameter Name="telephone" Type="String" />
+                <asp:Parameter Name="sex" Type="Int32" />
+                <asp:Parameter Name="birthday" Type="String" />
+                <asp:Parameter Name="username" Type="String" />
+            </InsertParameters>
+            <SelectParameters>
+                <asp:QueryStringParameter Name="ID" QueryStringField="id" Type="Int32" />
+            </SelectParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="name" Type="String" />
+                <asp:Parameter Name="nikename" Type="String" />
+                <asp:Parameter Name="telephone" Type="String" />
+                <asp:Parameter Name="sex" Type="Int32" />
+                <asp:Parameter Name="birthday" Type="String" />
+                <asp:Parameter Name="username" Type="String" />
+                <asp:Parameter Name="ID" Type="Int32" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
 </section>
 
 </asp:Content>

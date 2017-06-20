@@ -11,4 +11,18 @@ public partial class HTguanli_user_list : System.Web.UI.Page
     {
 
     }
+
+    protected void Unnamed2_Click(object sender, EventArgs e)
+    {
+        string sql;
+        if (txt.Text != null && txt.Text != "")
+        {
+            sql = "select * from Users where username='" + txt.Text.Trim() + "'";
+        }
+        else
+        {
+            sql = "select * from Users";
+        }
+        SqlDataSource1.SelectCommand = sql;
+    }
 }

@@ -14,7 +14,7 @@
 <section class="rt_wrap content mCustomScrollbar">
     <div class="page_title">
        <h2 class="fl">商品列表</h2>
-       <a href="product_list1.aspx" class="fr top_rt_btn add_icon">添加商品</a>
+       <a href="product_list.aspx" class="fr top_rt_btn add_icon">添加商品</a>
       </div>
     <asp:Label ID="Label1" runat="server" Text="商品名称"></asp:Label>
     <asp:TextBox ID="TextBox1" class="textbox textbox_225" runat="server"></asp:TextBox>

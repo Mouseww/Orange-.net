@@ -178,8 +178,8 @@ for (var i = 0; i < vbx.Count; i++)
 						 <%if (Session["User"] == null)
                              { %>
                             <div class="member-logout">
-                                <a class="am-btn-warning btn" href="../Login/Login">登录</a>
-                                <a class="am-btn-warning btn" href="../Login/register">注册</a>
+                                <a class="am-btn-warning btn" href="../home/Login.aspx">登录</a>
+                                <a class="am-btn-warning btn" href="../home/register.aspx">注册</a>
                             </div>
                             <%}
                                                   else

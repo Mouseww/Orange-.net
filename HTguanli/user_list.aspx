@@ -6,78 +6,39 @@
  <div class="rt_content">
       <div class="page_title">
        <h2 class="fl">会员列表</h2>
-       <a href="user_detail.html" class="fr top_rt_btn add_icon">添加新会员</a>
+     <%--  <a href="user_detail.html" class="fr top_rt_btn add_icon">添加新会员</a>--%>
       </div>
       <section class="mtb">
-       <select class="select">
-        <option>会员等级</option>
-        <option>普通会员</option>
-        <option>高级会员</option>
-       </select>
-       <input type="text" class="textbox textbox_225" placeholder="输入会员号/手机/电子邮件查询..."/>
-       <input type="button" value="查询" class="group_btn"/>
+       
+       <asp:TextBox runat="server" type="text" ID="txt" class="textbox textbox_225" placeholder="输入用户名"/>
+       <asp:Button runat="server" type="button" Text="查询"  class="group_btn" OnClick="Unnamed2_Click"/>
       </section>
-      <table class="table">
-       <tr>
-        <th>Id</th>
-        <th>会员头像</th>
-        <th>会员账号</th>
-        <th>手机号码</th>
-        <th>电子邮件</th>
-        <th>验证</th>
-        <th>会员等级</th>
-        <th>账户余额</th>
-        <th>冻结资金</th>
-        <th>操作</th>
-       </tr>
-       <tr>
-        <td class="center">001</td>
-        <td class="center"><img src="upload/user_002.png" width="50" height="50"/></td>
-        <td>DeathGhost</td>
-        <td class="center">18300000000</td>
-        <td class="center">deathghost@sina.cn</td>
-        <td class="center"><a title="已验证" class="link_icon">&#89;</a></td>
-        <td class="center">普通会员</td>
-        <td class="center">
-         <strong class="rmb_icon">5559.00</strong>
-        </td>
-        <td class="center">
-         <strong class="rmb_icon">59.00</strong>
-        </td>
-        <td class="center">
-         <a href="user_detail.html" title="编辑" class="link_icon">&#101;</a>
-         <a href="#" title="删除" class="link_icon">&#100;</a>
-        </td>
-       </tr>
-       <tr>
-        <td class="center">002</td>
-        <td class="center"><img src="upload/user_001.png" width="50" height="50"/></td>
-        <td>DeathGhost02</td>
-        <td class="center">15800000000</td>
-        <td class="center">232650413@sina.cn</td>
-        <td class="center"><a title="未验证" class="link_icon">&#88;</a></td>
-        <td class="center">高级会员</td>
-        <td class="center">
-         <strong class="rmb_icon">199.00</strong>
-        </td>
-        <td class="center">
-         <strong class="rmb_icon">15.00</strong>
-        </td>
-        <td class="center">
-         <a href="user_detail.html" title="编辑" class="link_icon">&#101;</a>
-         <a href="#" title="删除" class="link_icon">&#100;</a>
-        </td>
-       </tr>
-      </table>
-      <aside class="paging">
-       <a>第一页</a>
-       <a>1</a>
-       <a>2</a>
-       <a>3</a>
-       <a>…</a>
-       <a>1004</a>
-       <a>最后一页</a>
-      </aside>
+     <asp:GridView class="table" ID="GridView1" runat="server" Width="100%" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource1">
+         <Columns>
+             <asp:BoundField DataField="ID" HeaderText="用户编号" InsertVisible="False" ReadOnly="True" SortExpression="ID" />
+             <asp:BoundField DataField="username" HeaderText="用户名" SortExpression="username" />
+             <asp:BoundField DataField="password" HeaderText="密码" SortExpression="password" />
+             <asp:BoundField DataField="User_IN_ID" HeaderText="User_IN_ID" SortExpression="User_IN_ID" Visible="False" />
+             <asp:CommandField HeaderText="操作" ShowDeleteButton="True" ShowEditButton="True" />
+         </Columns>
+      </asp:GridView>
+      <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:aspnet_Orange_20170331015318ConnectionString %>" DeleteCommand="DELETE FROM [Users] WHERE [ID] = @ID" InsertCommand="INSERT INTO [Users] ([username], [password], [User_IN_ID]) VALUES (@username, @password, @User_IN_ID)" SelectCommand="SELECT * FROM [Users]" UpdateCommand="UPDATE [Users] SET [username] = @username, [password] = @password, [User_IN_ID] = @User_IN_ID WHERE [ID] = @ID">
+          <DeleteParameters>
+              <asp:Parameter Name="ID" Type="Int32" />
+          </DeleteParameters>
+          <InsertParameters>
+              <asp:Parameter Name="username" Type="String" />
+              <asp:Parameter Name="password" Type="String" />
+              <asp:Parameter Name="User_IN_ID" Type="Int32" />
+          </InsertParameters>
+          <UpdateParameters>
+              <asp:Parameter Name="username" Type="String" />
+              <asp:Parameter Name="password" Type="String" />
+              <asp:Parameter Name="User_IN_ID" Type="Int32" />
+              <asp:Parameter Name="ID" Type="Int32" />
+          </UpdateParameters>
+      </asp:SqlDataSource>
+      
  </div>
 </section>
 
