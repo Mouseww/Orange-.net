@@ -9,8 +9,30 @@ namespace Orange商城
     public class biz
     {
         LinqDataContext db = new LinqDataContext();
-
-
+        /// <summary>
+        /// 在C类表插入一条未填写数据
+        /// </summary>
+        public void addrowsC(int id)
+        {
+            var a = new Commodity_2();
+            a.ID_1_ID = id;
+            db.Commodity_2.InsertOnSubmit(a);
+            db.SubmitChanges();
+        }
+        /// <summary>
+        /// 在B表插入一条未填写数据
+        /// </summary>
+        public void addrowsB(int id)
+        {
+            var a = new Commodity_1();
+            a.ID_1_ID = id;
+            db.Commodity_1.InsertOnSubmit(a);
+            db.SubmitChanges();
+        }
+        public HTUsers HTLogin(string username,string password)
+        {
+            return db.HTUsers.First(a => a.username == username && a.password == password);
+        }
         /// <summary>
         /// 获取商品类型=
         /// </summary>

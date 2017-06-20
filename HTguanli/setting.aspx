@@ -1,70 +1,46 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/HTguanli/MasterPage1.master" AutoEventWireup="true" CodeFile="setting.aspx.cs" Inherits="HTguanli_setting" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-
+  
 
 <section class="rt_wrap content mCustomScrollbar">
  <div class="rt_content">
       <div class="page_title">
-       <h2 class="fl">站点基础设置</h2>
+       <h2 class="fl">商品分类管理</h2>
+          <div style="position:absolute;right:5%;top:3%">
       </div>
-     <section>
-      <ul class="ulColumn2">
-       <li>
-        <span class="item_name" style="width:120px;">站点名称：</span>
-        <input type="text" class="textbox textbox_225" placeholder="站点名称..."/>
-        <span class="errorTips">一般不超过80个字符</span>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;">上传logo：</span>
-        <label class="uploadImg">
-         <input type="file"/>
-         <span>上传站点logo</span>
-        </label>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;">站点描述：</span>
-        <input type="text" class="textbox textbox_295" placeholder="站点描述..."/>
-        <span class="errorTips">一般不超过200个字符</span>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;">关键词：</span>
-        <input type="text" class="textbox textbox_295" placeholder="多个关键词用”,“或”|“隔开..."/>
-        <span class="errorTips">一般不超过100个字符</span>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;">公司地址：</span>
-        <select class="select">
-         <option>选择省份</option>
-        </select>
-        <select class="select">
-         <option>选择城市</option>
-        </select>
-        <select class="select">
-         <option>选择区/县</option>
-        </select>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;">详细地址：</span>
-        <input type="text" class="textbox textbox_295" placeholder="详细地址..."/>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;">关闭站点：</span>
-        <label class="single_selection"><input type="radio" name="name"/>否</label>
-        <label class="single_selection"><input type="radio" name="name"/>是</label>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;">关闭站点：</span>
-        <textarea placeholder="关闭站点原因" class="textarea" style="height:50px;width:640px;"></textarea>
-       </li>
-       <li>
-        <span class="item_name" style="width:120px;"></span>
-        <input type="submit" class="link_btn" value="保存"/>
-       </li>
-      </ul>
-     </section>
- </div>
-</section>
+          </div>
+      <asp:GridView ID="GridView1" class="table" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource1" Width="100%" AllowPaging="True" AllowSorting="True">
+        <Columns>
+            <asp:BoundField DataField="ID" HeaderText="A类编号" InsertVisible="False" ReadOnly="True" SortExpression="ID" >
+            </asp:BoundField>
+            <asp:BoundField DataField="Type_Name" HeaderText="类名" SortExpression="Type_Name" />
+            <asp:CommandField HeaderText="操作" ShowEditButton="True" ShowDeleteButton="True">
+            </asp:CommandField>
+            <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="setting2.aspx?id={0}" DataTextFormatString="{0}" HeaderText="链接" Text="详情" />
+        </Columns>
+    </asp:GridView>
+    </div>
+    </section>
+    
+   
+    <asp:SqlDataSource  ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:aspnet_Orange_20170331015318ConnectionString %>" DeleteCommand="DELETE FROM [Commodity_type] WHERE [ID] = @ID" InsertCommand="INSERT INTO [Commodity_type] ([Type_Name], [img], [Time]) VALUES (@Type_Name, @img, @Time)" SelectCommand="SELECT * FROM [Commodity_type]" UpdateCommand="UPDATE [Commodity_type] SET [Type_Name] = @Type_Name, [img] = @img, [Time] = @Time WHERE [ID] = @ID">
+        <DeleteParameters>
+            <asp:Parameter Name="ID" Type="Int32" />
+        </DeleteParameters>
+        <InsertParameters>
+            <asp:Parameter Name="Type_Name" Type="String" />
+            <asp:Parameter Name="img" Type="String" />
+            <asp:Parameter Name="Time" Type="String" />
+        </InsertParameters>
+        <UpdateParameters>
+            <asp:Parameter Name="Type_Name" Type="String" />
+            <asp:Parameter Name="img" Type="String" />
+            <asp:Parameter Name="Time" Type="String" />
+            <asp:Parameter Name="ID" Type="Int32" />
+        </UpdateParameters>
+    </asp:SqlDataSource>
+    
 
 
 </asp:Content>

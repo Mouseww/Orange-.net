@@ -24,7 +24,7 @@ public partial class home_index : System.Web.UI.Page
     public Commodity_1 Commm2 = new Commodity_1();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.QueryString["?remove_user"] == "1")
+        if (Request.QueryString["remove_user"] == "1")
         {
             Session["User"] = null;
             Response.Redirect("../home/index.aspx");
