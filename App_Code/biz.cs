@@ -109,7 +109,7 @@ namespace Orange商城
         public bool AddCommodity(string Commodity_name, string Commodity_typec, string jianjie, string[] arry, string img)
         {
             var time = DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "");
-            var Commodity_2 = db.Commodity_2.First(a => a.Name == Commodity_typec);
+            var Commodity_2 = db.Commodity_2.First(a => a.Name == Commodity_typec.Trim());
 
             //添加到商品
             var Commodity = new Commodities();
@@ -118,6 +118,8 @@ namespace Orange商城
             Commodity.Time = time;
             Commodity.Commodity_2 = Commodity_2;
             Commodity.img = img;
+            Commodity.Price = double.Parse(arry[2]);
+            Commodity.Price_old = double.Parse(arry[2]) * 1.5;
             db.Commodities.InsertOnSubmit(Commodity);
             db.SubmitChanges();
             var Commodity_new = db.Commodities.First(a => a.Time == time && a.Name == Commodity_name);
