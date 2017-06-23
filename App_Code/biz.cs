@@ -9,6 +9,36 @@ namespace Orange商城
     public class biz
     {
         LinqDataContext db = new LinqDataContext();
+
+        public bool del_order(int id)
+        {
+            var reader = db.Orders.First(a => a.Id == id);
+            db.Orders.DeleteOnSubmit(reader);
+            db.SubmitChanges();
+            return true;
+        }
+        /// <summary>
+        /// 取用户订单列表
+        /// </summary>
+        public List<VMOrder> selectorder(int id)
+        {
+            return db.Orders.Where(a => a.user_id == id).Select(a => new VMOrder() {
+                ID = a.Id,
+                name = a.Commodity_attribute.Name,
+                img = a.Commodity_attribute.Commodities.img,
+                op1 = a.Commodity_attribute.Commodity_option1.option,
+                op2 = a.Commodity_attribute.Commodity_option2.option,
+                op1_type = a.Commodity_attribute.Commodity_option1.type_name,
+                op2_type = a.Commodity_attribute.Commodity_option2.type_name,
+                allprice = double.Parse(a.Price),
+                price = a.Commodity_attribute.Price,
+                number = a.BuyNum,
+                time=a.Time,
+                state=a.State
+
+
+            }).ToList();
+        }
         /// <summary>
         /// 在C类表插入一条未填写数据
         /// </summary>
