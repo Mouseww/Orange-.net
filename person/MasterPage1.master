@@ -69,8 +69,7 @@
                 <li>
                     <img src="../images/logobig.png" /></li>
             </div>
-
-            <div class="search-bar pr">
+  <div class="search-bar pr">
                 <a name="index_none_header_sysc" href="#"></a>
                 <form>
                     <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
@@ -81,7 +80,7 @@
             $('#ai-topsearch').click(function() {
                 if ($('#searchInput').text != null) {
                    
-                    document.location.href = "search.aspx?Name=" + $('#searchInput').val();
+                    document.location.href = "../home/search.aspx?Name=" + $('#searchInput').val();
                     
                     return false;
                 }

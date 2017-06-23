@@ -57,7 +57,9 @@
    <dl>
     <dt>商品管理</dt>
     <!--当前链接则添加class:active-->
-    <dd><a href="product_detail.aspx" class="active">商品列表</a></dd>
+       
+    <dd><a href="setting.aspx" >商品分类</a></dd>
+    <dd><a href="product_detail.aspx" >商品列表</a></dd>
     <dd><a href="product_list1.aspx">商品添加</a></dd>
     
    </dl>
