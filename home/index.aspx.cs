@@ -13,13 +13,19 @@ public partial class home_index : System.Web.UI.Page
     public List<IMGs> Recommend = new List<IMGs>();
     public List<IMGs> Recommends = new List<IMGs>();
     public List<IMGs> huodong = new List<IMGs>();
+
     public List<IMGs> tianpinfirst = new List<IMGs>();
+    public List<IMGs> jianguofirst = new List<IMGs>();
+
     public List<VMCommodity> tianpin = new List<VMCommodity>();
+    public List<VMCommodity> jianguo = new List<VMCommodity>();
+
     public List<Commodity_type> Commodity_Type = new List<Commodity_type>();
     public List<List<Commodity_1>> Commodity_1 = new List<List<Commodity_1>>();
     public List<List<List<Commodity_2>>> Commodity = new List<List<List<Commodity_2>>>();
     public Commodity_1 Comm1 = new Commodity_1();
     public List<Commodity_2> Comm = new List<Commodity_2>();
+
     public List<Commodity_2> Commm = new List<Commodity_2>();
     public Commodity_1 Commm2 = new Commodity_1();
     protected void Page_Load(object sender, EventArgs e)
@@ -35,36 +41,38 @@ public partial class home_index : System.Web.UI.Page
         Recommends = new biz().GETIMG("Recommends");
         huodong = new biz().GETIMG("huodong");
         tianpinfirst = new biz().GETIMG("tianpinfirst");
+        jianguofirst = new biz().GETIMG("jianguofirst");
 
         tianpin = new biz().GetMoK("tianpin");
+        jianguo = new biz().GetMoK("jianguo");
 
 
         Commodity_Type = new biz().GetCommodity_type();//取A级目录
-        
-
-       Commodity_1 = Details(Commodity_Type);//取B级目录
-        
-
-       Commodity = Details1(Commodity_1);//c
-       
-
-         Comm1 = new biz().GetCommodityTD(6);//取第一模块top标题
-       
 
 
-         Comm = Details5(Comm1);//
-       
+        Commodity_1 = Details(Commodity_Type);//取B级目录
+
+
+        Commodity = Details1(Commodity_1);//c
+
+
+        Comm1 = new biz().GetCommodityTD(6);//取第一模块top标题
+
+
+
+        Comm = Details5(Comm1);//
+
         //var Comm2 = Details2(Comm1, Comm);//取模块的每个目录的首个商品
         //Comm2 = Comm2;
 
 
-         Commm2 = new biz().GetCommodityTD(7);
-      
+        Commm2 = new biz().GetCommodityTD(7);
+
         Commm = Details5(Commm2);//
-        
 
 
-  
+
+
     }
     /// <summary>
     /// 单独取C级目录(用于主页模块)

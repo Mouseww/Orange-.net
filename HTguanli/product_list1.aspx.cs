@@ -48,7 +48,7 @@ public partial class HTguanli_product_list1 : System.Web.UI.Page
                 //对上传文件的大小进行检测，限定文件最大不超过8M
                 if (pic_upload.PostedFile.ContentLength < 8192000)
                 {
-                    string filepath = "images/";
+                    string filepath = "../images/";
                     if (Directory.Exists(Server.MapPath(filepath)) == false)//如果不存在就创建file文件夹
                     {
                         Directory.CreateDirectory(Server.MapPath(filepath));
