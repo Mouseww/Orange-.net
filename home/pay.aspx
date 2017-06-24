@@ -245,8 +245,33 @@
                                 <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee"><%=Commodity.Price*Commodity.Number %></em>
                             </span>
                         </div>
-<%foreach (var ressfirst in (ress.Where(a => a.moren == "1").Distinct()))
-{ %>
+                         <%if ((ress.Where(a => a.moren == "1").Distinct()).Count()==0)
+                             {%>
+
+                        <div id="holyshit268" class="pay-address">
+
+                            <p class="buy-footer-address">
+                                <span class="buy-line-title buy-line-title-type">寄送至：</span>
+                                <span class="buy--address-detail">
+                                    <span id="sheng" class="province"></span>省
+                                    <span id="city" class="city"></span>市
+                                    <span id="quyu" class="dist"></span>区
+                                    <span id="xiangxi" class="street"></span>
+                               
+                                </span>
+                            </p>
+                            <p class="buy-footer-address">
+                                <span class="buy-line-title">收货人：</span>
+                                <span class="buy-address-detail">
+                                      <span id="name" class="buy-user"></span>
+                                    <span id="phone" class="buy-phone"></span>
+                                </span>
+                            </p>
+                        </div>
+                       <%} %>
+<%
+    foreach (var ressfirst in (ress.Where(a => a.moren == "1").Distinct()))
+    { %>
                         <div id="holyshit268" class="pay-address">
 
                             <p class="buy-footer-address">
@@ -266,7 +291,10 @@
                                     <span id="phone" class="buy-phone"><%=ressfirst.telephone%></span>
                                 </span>
                             </p>
-                        </div><% }%>
+                        </div>
+                               <%}%>
+                        
+                        
                     </div>
 
                     <div id="holyshit269" class="submitOrder">
