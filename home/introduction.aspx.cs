@@ -21,12 +21,12 @@ public partial class home_introduction : System.Web.UI.Page
         user = (VMUser)Session["User"];
 
         int id = 0;
-        try { id = int.Parse(Request.QueryString["id"]);
+        try { id = int.Parse(Request["id"]);
           
            
         }
         catch {
-            id = int.Parse(Request.Form["id"]);
+            
         }
 
 

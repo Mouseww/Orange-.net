@@ -249,7 +249,7 @@
                     <strong class="price">¥<em id="J_Total">0.00</em></strong>
                 </div>
                 <div class="btn-area">
-                    <a href="pay.html" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
+                    <a href="javascript:pay();" id="J_Go" class="submit-btn submit-btn-disabled" aria-label="请注意如果没有选择宝贝，将无法结算">
                         <span>结&nbsp;算</span>
                     </a>
                 </div>
@@ -257,7 +257,18 @@
 
         </div>
         <script>
-            
+            function pay() {
+                 var number = $('.check:checkbox[checked]');
+                if (number == null||number.length==0) {
+                    alert('请先选择要操作的商品！');
+                    return false;
+                }
+                for(var i=0;i<number.length;i++){
+                    check_id.push(number[i].id);
+                }
+                var check_id1=check_id.toString();
+                 document.location.href = "pay.aspx?array=" + check_id1 + "";
+            }
             $('*').click(function(){
                 setTimeout('chen()', 1000);
             } )
@@ -284,7 +295,9 @@
                 var check_id1=check_id.toString();
                 
                 document.location.href = "shopcart.aspx?arry=" + check_id1 + "";
-            }</script>
+            }
+
+        </script>
         
 
     </div>

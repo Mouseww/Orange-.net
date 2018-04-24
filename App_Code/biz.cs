@@ -721,6 +721,33 @@ namespace Orange商城
                 }).ToList();
         }
         /// <summary>
+        /// 获取购物车的部分商品
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public ShopCars shopcart(string Id)
+        {
+
+            return db.Shopcarts.Where(a => a.Id == int.Parse(Id))
+                .Select(a => new ShopCars
+                {
+                    Id = a.Id,
+                    shop_name = a.Commodity_attribute.Name,
+                    option1 = a.Commodity_option1.option,
+                    option1_id = a.Commodity_option1.Id,
+                    option1_name = a.Commodity_option1.type_name,
+                    option2 = a.Commodity_option2.option,
+                    option2_id = a.Commodity_option2.Id,
+                    option2_name = a.Commodity_option2.type_name,
+                    Commodity_id = a.Commodity_Id,
+                    img = a.Commodity_attribute.Commodities.img,
+                    // img_small = a.Commodities.img_small,
+                    Price = a.Price,
+                    Old_Price = a.Old_Price,
+                    Number = a.Number
+                }).ToList()[0];
+        }
+        /// <summary>
         /// 获取购物车已有商品数量
         /// </summary>
         /// <param name="user"></param>
@@ -814,6 +841,51 @@ namespace Orange商城
             db.Orders.InsertOnSubmit(order);
            db.SubmitChanges();
             return true;
+        }
+        /// <summary>
+        /// 添加订单
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="user"></param>
+        /// <param name="name"></param>
+        /// <param name="phone"></param>
+        /// <param name="sheng"></param>
+        /// <param name="city"></param>
+        /// <param name="quyu"></param>
+        /// <param name="xiangxi"></param>
+        /// <param name="Price"></param>
+        /// <returns></returns>
+        public bool insertOrder(string array,VMUser user,string name, string phone, string sheng, string city, string quyu, string xiangxi, string Price) {
+
+            var arraylist = array.Split(',').ToList();
+
+            foreach (var item in arraylist)
+            {
+                var shopcar = new biz().shopcart(item);
+                
+                var order = new Orders();
+                order.Commodity_Id = shopcar.Commodity_id;
+                order.BuyNum = shopcar.Number;
+                order.user_id = user.ID;
+                order.ManName = name;
+                order.Manphone = phone;
+                order.Price = Price;
+                order.sendAddress = sheng + "省" + city + "市" + quyu + "区" + xiangxi;
+                order.Time = DateTime.Now.ToString();
+                order.State = "待付款";
+                db.Orders.InsertOnSubmit(order);
+                var shopCar = db.Shopcarts.Single(a => a.Id == shopcar.Id);
+                db.Shopcarts.DeleteOnSubmit(shopCar);
+            }
+            try {
+                db.SubmitChanges();
+                    return true;
+            }
+            catch(Exception ex) {
+                var msg=ex.Message;
+                return false;
+            }
+            
         }
     }
 }

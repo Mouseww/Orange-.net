@@ -9,11 +9,13 @@ using System.Web.UI.WebControls;
 
 public partial class home_pay : System.Web.UI.Page
 {
-    public ShopCars Commodity = new ShopCars();
+    public List<ShopCars> CommodityList = new List<ShopCars>();
     public List<Resses> ress = new List<Resses>();
     public VMUser user=new VMUser();
     public string id;
     public int opt1_id, opt2_id;
+    public Double AllPrice;
+    public string arraystr;
     protected void Page_Load(object sender, EventArgs e)
     {
         try
@@ -45,9 +47,21 @@ public partial class home_pay : System.Web.UI.Page
         {
 
         }
+        string array = Request.QueryString["array"];
+        if (array != null&&array!="") {
+                // CommodityList=new biz().get
+                array = array.Replace("check_", "");
+                arraystr = array;
+                var arraylist = array.Split(',').ToList();
 
+                foreach (var item in arraylist) {
+                    var shopcar = new biz().shopcart(item);
+                    CommodityList.Add(shopcar);
+                }
 
-            try
+        }
+        else { 
+        try
         {
              id = Request.QueryString["id"];
             string Commodity_id = Request.QueryString["Commodity_id"];
@@ -65,7 +79,7 @@ public partial class home_pay : System.Web.UI.Page
           
                 if (id != null && Commodity_id != null)
                 {
-                    
+                    var Commodity = new ShopCars();
                     Commodity.Commodity_id = int.Parse(Commodity_id);
                     Commodity.option1_name = attr;
                     Commodity.option2_name = attr2;
@@ -76,18 +90,21 @@ public partial class home_pay : System.Web.UI.Page
                     Commodity.shop_name = Commodity_name;
                     Commodity.Price = double.Parse(Price);
                     Commodity.Old_Price = double.Parse(Old_Price);
+                    CommodityList.Add(Commodity);
                    
-                    ress = new biz().SelectRess(user.ID);
                    
 
                 }
+
             
-           
 
         }
         catch
         {
 
         }
+        }
+        ress = new biz().SelectRess(user.ID);
+
     }
 }

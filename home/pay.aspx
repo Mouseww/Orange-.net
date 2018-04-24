@@ -136,68 +136,53 @@
                     
                 </div>
 
-                <tr id="J_BundleList_s_1911116345_1" class="item-list">
-                    <div id="J_Bundle_s_1911116345_1_0" class="bundle  bundle-last">
+<%--                <tr id="J_BundleList_s_1911116345_1" class="item-list">--%>
+                <% for (int i=0;i<CommodityList.Count();i++)
+                              {%>
+                    <div  class="bundle  bundle-last">
                         <div class="bundle-main">
                             <ul class="item-content clearfix">
-                                <div class="pay-phone">
                                     <li class="td td-item">
                                         <div class="item-pic">
                                             <a href="#" class="J_MakePoint">
-                                                <img  style="width:100%" src="<%=Commodity.img %>" class="itempic J_ItemImg">
+                                                <img  style="width:100%" src="<%=CommodityList[i].img %>" class="itempic J_ItemImg">
                                             </a>
                                         </div>
                                         <div class="item-info">
                                             <div class="item-basic-info">
-                                                <a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色" class="item-title J_MakePoint" data-point="tbcart.8.11"><%=Commodity.shop_name %></a>
+                                                <a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色" class="item-title J_MakePoint" data-point="tbcart.8.11"><%=CommodityList[i].shop_name %></a>
                                             </div>
                                         </div>
                                     </li>
                                     <li class="td td-info">
                                         <div class="item-props">
-                                            <span class="sku-line"><%=Commodity.option1%> ：<%=@Commodity.option1_name%></span>
-                                            <span class="sku-line"><%=Commodity.option2%> ：<%=Commodity.option2_name%></span>
+                                            <span class="sku-line"><%=CommodityList[i].option1_name%> ：<%=CommodityList[i].option1%> </span>
+                                            <br/>
+                                            <span class="sku-line"><%=CommodityList[i].option2_name%> ：<%=CommodityList[i].option2%> </span>
                                         </div>
                                     </li>
                                     <li class="td td-price">
                                         <div class="item-price price-promo-promo">
                                             <div class="price-content">
-                                                <em class="J_Price price-now"><%=Commodity.Price %></em>
+                                                <em class="J_Price price-now"><%=CommodityList[i].Price %></em>
                                             </div>
                                         </div>
                                     </li>
-                                </div>
+                                
 
-                                <li class="td td-amount">
-                                    <div class="amount-wrapper ">
-                                        <div class="item-amount ">
-                                            <span class="phone-title">购买数量</span>
-                                            <div class="sl">
-                                                <input id="min" class="min am-btn" name="" type="button" value="-" />
-                                                <input id="text_box" class="text_box" name="" type="text" value="<%=Commodity.Number%>" style="width:30px;" />
-                                                <input id="add" class="add am-btn" name="" type="button" value="+" />
-                                            </div>
-                                            <script>
-                                                $('.am-btn').click(function () {
-                                                     setTimeout('newp()',100)
-                                                   
-                                                })
+                                <li class="td td-amount" >
+                                    <div class="item-price price-promo-promo">
+                                        <div class="item-amount" style="margin-top:5px">
+                                               <em id="buynum" class="J_Price price-now"><%=CommodityList[i].Number%></em>
                                                
-                                                function newp()
-                                                {
-                                                     var num = parseInt($('#text_box').val());
-                                                    $('#text_box').val(num) ; 
-                                                    $('#J_ActualFee').text(num*<%=Commodity.Price %>);
-                                                    $('#jiagea').text(num*<%=Commodity.Price %>);
-                                                }
-                                             
-                                            </script>
+                                           
+                                         
                                         </div>
                                     </div>
                                 </li>
                                 <li class="td td-sum">
                                     <div class="td-inner">
-                                        <em tabindex="0" id="jiagea" class="J_ItemSum number"><%=Commodity.Price*Commodity.Number %></em>
+                                        <em  id="jiagea<%=i%>" class="J_ItemSum number jiagechild"><%=CommodityList[i].Price * CommodityList[i].Number %></em>
                                     </div>
                                 </li>
                                 <li class="td td-oplist">
@@ -213,7 +198,9 @@
                             <div class="clear"></div>
 
                         </div>
-                </tr>
+                        <%  AllPrice += CommodityList[i].Price * CommodityList[i].Number;
+                            } %>
+                <%--</tr>--%>
             </div>
             <div class="clear"></div>
             <div class="pay-total">
@@ -242,7 +229,7 @@
                         <div tabindex="0" id="holyshit267" class="realPay">
                             <em class="t">实付款：</em>
                             <span class="price g_price ">
-                                <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee"><%=Commodity.Price*Commodity.Number %></em>
+                                <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee"><%=AllPrice %></em>
                             </span>
                         </div>
                          <%if ((ress.Where(a => a.moren == "1").Distinct()).Count()==0)
@@ -340,7 +327,7 @@
                                     $('#xiangxi').text(xiangxi);
                                 })
                                 function sub(){
-                                    document.location.href="../home/success.aspx?id=<%=id%>&&option1=<%=opt1_id%>&&option2=<%=opt2_id%>&&buynum="+$('#text_box').val()+"&&sheng="+$('#sheng').text()+"&&city="+$('#city').text()+"&quyu="+$('#quyu').text()+"&&xiangxi="+$('#xiangxi').text()+"&&name="+$('#name').text()+"&&phone="+$('#phone').text()+"&&Price="+$('#J_ActualFee').text()
+                                    document.location.href="../home/success.aspx?arrayid=<%=arraystr%>&&id=<%=id%>&&option1=<%=opt1_id%>&&option2=<%=opt2_id%>&&buynum="+$('#buynum').text()+"&&sheng="+$('#sheng').text()+"&&city="+$('#city').text()+"&quyu="+$('#quyu').text()+"&&xiangxi="+$('#xiangxi').text()+"&&name="+$('#name').text()+"&&phone="+$('#phone').text()+"&&Price="+$('#J_ActualFee').text()
 
                                 }
                                 $(function(){

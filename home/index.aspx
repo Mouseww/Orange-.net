@@ -29,15 +29,15 @@
 					   <div class="nav-cont">
 							<ul>
 								<li class="../home/index.aspx"><a href="#">首页</a></li>
-                                <li class="qc"><a href="#">闪购</a></li>
+                              <%--  <li class="qc"><a href="#">闪购</a></li>
                                 <li class="qc"><a href="#">限时抢</a></li>
                                 <li class="qc"><a href="#">团购</a></li>
-                                <li class="qc last"><a href="#">大包装</a></li>
+                                <li class="qc last"><a href="#">大包装</a></li>--%>
 							</ul>
-						    <div class="nav-extra">
+						    <%--<div class="nav-extra">
 						    	<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
 						    	<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
-						    </div>
+						    </div>--%>
 						</div>
 		        				
 						<!--侧边导航 -->
@@ -160,20 +160,7 @@ for (var i = 0; i < vbx.Count; i++)
 					<!--走马灯 -->
 
 					<div class="marqueen">
-						<span class="marqueen-title">商城头条</span>
-						<div class="demo">
-
-							<ul>
-								<li class="title-first"><a target="_blank" href="#">
-									<img src="../images/TJ2.jpg"/>
-									<span>[特惠]</span>商城爆品1分秒								
-								</a></li>
-								<li class="title-first"><a target="_blank" href="#">
-									<span>[公告]</span>商城与广州市签署战略合作协议
-								     <img src="../images/TJ.jpg"/>
-								     <p>XXXXXXXXXXXXXXXXXX</p>
-							    </a></li>
-							    
+						
 						<div class="mod-vip">
 						 <%if (Session["User"] == null)
                              { %>
@@ -194,20 +181,7 @@ for (var i = 0; i < vbx.Count; i++)
                             </div>
 
                             <%} %>
-							<div class="member-login">
-								<a href="#"><strong>0</strong>待收货</a>
-								<a href="#"><strong>0</strong>待发货</a>
-								<a href="#"><strong>0</strong>待付款</a>
-								<a href="#"><strong>0</strong>待评价</a>
-							</div>
-							<div class="clear"></div>	
-						</div>																	    
-							    
-								<li><a target="_blank" href="#"><span>[特惠]</span>洋河年末大促，低至两件五折</a></li>
-								<li><a target="_blank" href="#"><span>[公告]</span>华北、华中部分地区配送延迟</a></li>
-								<li><a target="_blank" href="#"><span>[特惠]</span>家电狂欢千亿礼券 买1送1！</a></li>
-								
-							</ul>
+							
                         <div class="advTip"><img src="../images/advTip.jpg"/></div>
 						</div>
 					</div>
@@ -238,7 +212,7 @@ for (var i = 0; i < vbx.Count; i++)
 					<div class="am-g am-g-fixed recommendation">
 						
             <!--今日推荐 -->
-            <div class="am-g am-g-fixed recommendation">
+           <%-- <div class="am-g am-g-fixed recommendation">
             <div class="clock am-u-sm-3">
                 <img src="<%=Recommends[0].img %>"/>
                 <p>今日<br>推荐</p>
@@ -255,12 +229,12 @@ for (var i = 0; i < vbx.Count; i++)
                     </div>
                 </div>
 
-           <% }%> 
+           <% }%> --%>
 
 					</div>
 					<div class="clear "></div>
 					<!--热门活动 -->
-
+<%--
 					<div class="am-container activity ">
 						<div class="shopTitle ">
 							<h4>活动</h4>
@@ -317,7 +291,7 @@ for (var i = 0; i < vbx.Count; i++)
                     </div>
 
                 </div>
-                   </div>
+                   </div>--%>
 					<div class="clear "></div>
 
 					
@@ -333,7 +307,7 @@ for (var i = 0; i < vbx.Count; i++)
                     <div class="today-brands ">
                         <% foreach (var CommV in Comm)
                             {%>
-                            <a href="introduction.aspx?Name=<%=CommV.Name %> "><%=CommV.Name %></a>
+                            <a href="search.aspx?Name=<%=CommV.Name %> "><%=CommV.Name %></a>
                        <% }%> 
                     </div>
                     <span class="more ">
@@ -455,7 +429,7 @@ for (var i = 0; i < vbx.Count; i++)
 							 <div class="today-brands ">
                         <% foreach (var Commm3 in Commm)
                             {%>
-                            <a href="introduction.aspx?Name=<%=Commm3.Name%> "><%=Commm3.Name%></a>
+                            <a href="search.aspx?Name=<%=Commm3.Name%> "><%=Commm3.Name%></a>
                        <% }%> 
                     </div>
 							<span class="more ">
